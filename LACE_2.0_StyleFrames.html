@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LACE 2.0 — Style Frames</title>
+<style>
+@font-face{font-family:'Franz Sans';font-weight:200;src:url('../../Downloads/LACE_2.0_brand_refresh/design_handoff_lace_2.0_identity/assets/fonts/FranzSans-ExtraLight.otf') format('opentype');}
+@font-face{font-family:'Franz Sans';font-weight:300;src:url('../../Downloads/LACE_2.0_brand_refresh/design_handoff_lace_2.0_identity/assets/fonts/FranzSans-Light.otf') format('opentype');}
+@font-face{font-family:'Franz Sans';font-weight:350;src:url('../../Downloads/LACE_2.0_brand_refresh/design_handoff_lace_2.0_identity/assets/fonts/FranzSans-SemiLight.otf') format('opentype');}
+@font-face{font-family:'Franz Sans';font-weight:500;src:url('../../Downloads/LACE_2.0_brand_refresh/design_handoff_lace_2.0_identity/assets/fonts/FranzSans-Medium.otf') format('opentype');}
+@font-face{font-family:'Franz Sans';font-weight:600;src:url('../../Downloads/LACE_2.0_brand_refresh/design_handoff_lace_2.0_identity/assets/fonts/FranzSans-SemiBold.otf') format('opentype');}
+@font-face{font-family:'Franz Sans';font-weight:700;src:url('../../Downloads/LACE_2.0_brand_refresh/design_handoff_lace_2.0_identity/assets/fonts/FranzSans-Bold.otf') format('opentype');}
+@font-face{font-family:'Franz Sans';font-weight:800;src:url('../../Downloads/LACE_2.0_brand_refresh/design_handoff_lace_2.0_identity/assets/fonts/FranzSans-ExtraBold.otf') format('opentype');}
+@font-face{font-family:'Franz Sans';font-weight:900;src:url('../../Downloads/LACE_2.0_brand_refresh/design_handoff_lace_2.0_identity/assets/fonts/FranzSans-Heavy.otf') format('opentype');}
+
+/* Colour tokens */
+:root{
+  --navy-900:#04111A;
+  --navy-500:#0E3757;
+  --teal-700:#007370;
+  --teal-500:#00AEA9;
+  --teal-400:#3DC1BE;
+  --teal-300:#75D3D1;
+  --yellow:#ECD25B;
+  --pink:#E76A97;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{background:#000;}
+body{font-family:'Franz Sans','Helvetica Neue',Arial,sans-serif;}
+
+.scene{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;}
+.scene+.scene{border-top:3px solid #000;}
+
+/* LABEL */
+.label{position:absolute;bottom:2.2%;right:2.5%;z-index:20;display:flex;align-items:center;gap:10px;}
+.label-num{font-family:'Franz Sans',sans-serif;font-size:clamp(8px,.7vw,11px);font-weight:600;letter-spacing:.2em;color:rgba(255,255,255,.2);}
+.label-tag{font-family:'Franz Sans',sans-serif;font-size:clamp(8px,.7vw,11px);font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(0,174,169,.45);}
+
+/* LOGO LOCKUP — horizontal: [knot] LACE²·⁰ */
+.logo{display:inline-flex;align-items:center;gap:.5em;}
+.logo svg{width:auto;height:1em;flex-shrink:0;}
+.logo-text{font-family:'Franz Sans',sans-serif;font-weight:900;color:#fff;line-height:1;letter-spacing:-.03em;}
+.logo-text sup{font-size:.42em;font-weight:700;letter-spacing:.02em;vertical-align:super;color:var(--teal-400);}
+
+/* FRAME LAYOUT */
+.frame{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:7% 8%;}
+.frame.bottom{justify-content:flex-end;padding-bottom:9%;}
+.frame.top{justify-content:flex-start;padding-top:8%;}
+.frame.center{align-items:center;text-align:center;}
+
+/* TYPOGRAPHY */
+.t-hero{font-family:'Franz Sans',sans-serif;font-weight:900;line-height:1.05;letter-spacing:-.04em;color:#fff;}
+.sz-xl{font-size:clamp(52px,9.5vw,160px);}
+.sz-lg{font-size:clamp(40px,7vw,120px);}
+.sz-md{font-size:clamp(30px,5.2vw,88px);}
+.sz-sm{font-size:clamp(22px,3.8vw,64px);}
+.sz-xs{font-size:clamp(16px,2.5vw,40px);}
+
+.teal{color:var(--teal-500);}
+.teal-lt{color:var(--teal-400);}
+.dim{color:rgba(255,255,255,.42);}
+.dimmer{color:rgba(255,255,255,.18);}
+
+.t-eye{font-family:'Franz Sans',sans-serif;font-weight:600;font-size:clamp(9px,1vw,15px);letter-spacing:.22em;text-transform:uppercase;color:rgba(0,174,169,.7);margin-bottom:1.3em;}
+.t-sub{font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(13px,1.8vw,28px);color:rgba(255,255,255,.55);line-height:1.45;margin-top:1em;}
+.t-sub.bold{font-weight:600;color:rgba(255,255,255,.75);}
+
+.rule{width:clamp(28px,3.5vw,52px);height:2px;background:var(--teal-500);margin-top:1.4em;}
+.rule.lg{width:clamp(44px,5.5vw,80px);height:3px;}
+.rule.v{width:2px;height:clamp(28px,3.5vw,52px);background:var(--teal-500);}
+
+/* VIGNETTES */
+.vig-b{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,17,26,.65) 0%,transparent 50%);pointer-events:none;}
+.vig-l{position:absolute;inset:0;background:linear-gradient(to right,rgba(4,17,26,.5) 0%,transparent 55%);pointer-events:none;}
+.vig-r{position:absolute;inset:0;background:linear-gradient(to left,rgba(4,17,26,.5) 0%,transparent 55%);pointer-events:none;}
+.vig-rad{position:absolute;inset:0;background:radial-gradient(ellipse 85% 85% at 50% 50%,transparent 40%,rgba(4,17,26,.6) 100%);pointer-events:none;}
+
+/* ============ SCENE BACKGROUNDS ============ */
+.bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0;}
+.bg-overlay{position:absolute;inset:0;background:rgba(4,17,26,.55);z-index:1;}
+.scene>*:not(.bg-img):not(.bg-overlay){z-index:2;}
+.bg-01{background:#04111A;}
+.bg-02{background:#04111A;}
+.bg-03{background:#060A0F;}
+.bg-04{background:#040D18;}
+.bg-05{background:#080D12;}
+.bg-06{background:#04111A;}
+.bg-07{background:var(--navy-900);}
+.bg-08{background:#04111A;}
+.bg-09{background:var(--navy-900);}
+.bg-10{background:#080C10;}
+.bg-11{background:#060D18;}
+.bg-12{background:var(--navy-900);}
+.bg-13{background:#04111A;}
+</style>
+</head>
+<body>
+
+<!-- ═══ SHARED SVG DEFS ═══ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="glow-lg"><feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="blur-sm"><feGaussianBlur stdDeviation="2"/></filter>
+  <radialGradient id="teal-radial" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#00AEA9" stop-opacity=".28"/>
+    <stop offset="100%" stop-color="#00AEA9" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="teal-radial-strong" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#00AEA9" stop-opacity=".45"/>
+    <stop offset="100%" stop-color="#00AEA9" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="knot-grad" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#75D3D1"/>
+    <stop offset="100%" stop-color="#00AEA9"/>
+  </linearGradient>
+  <!-- KNOT MARK -->
+  <symbol id="knot" viewBox="3 18 145 138">
+    <path fill="currentColor" d="M60.9,110.8l4.7-4.7-6.3-6.3,23.4-23.6,6.3,6.3,4.7-4.7-6.3-6.3,17.4-17.5c5.6-5.6,5.6-14.6,0-20.1l-.2-.2c-5.6-5.6-14.6-5.6-20.1,0l-1.8,1.8-1.8-1.8c-5.6-5.6-14.6-5.6-20.1,0l-.2.2c-5.2,5.2-5.5,13.6-.9,19.2h0s.5.5.5.5l4.7-4.7-.5-.5c-2.1-3-1.8-7.2.8-9.8l.2-.2c3-3,7.9-3,10.8,0l1.8,1.8-23.4,23.6-1.8-1.8c-5.6-5.6-14.6-5.6-20.1,0l-.2.2c-5.2,5.2-5.5,13.6-.9,19.2l4.7-4.7c-2.1-3-1.8-7.2.8-9.8l.2-.2c3-3,7.9-3,10.8,0l1.8,1.8-17.5,17.6c-5.6,5.6-5.6,14.6,0,20.1l.2.2c5.6,5.6,14.6,5.6,20.1,0l1.8-1.8,6.3,6.3ZM48.1,101.7c-3,3-7.9,3-10.8,0l-.2-.2c-3-3-3-7.9,0-10.8l17.5-17.6,6.1,6.1,2.6,2.6,4.7-4.7-6.5-6.5h0s-2.2-2.2-2.2-2.2l23.4-23.6.4.4h0s8.3,8.4,8.3,8.4l4.7-4.7-.5-.5h0s-8.2-8.2-8.2-8.2l1.8-1.8c3-3,7.9-3,10.8,0l.2.2c3,3,3,7.9,0,10.8l-17.4,17.5-8.7-8.7-4.7,4.7,8.7,8.7-23.4,23.6-8.7-8.7-4.7,4.7,8.7,8.7-1.8,1.8Z"/>
+    <path fill="currentColor" d="M134.5,87.5l-.5-.5-4.7,4.7.5.5h0c2.1,3,1.8,7.2-.8,9.8l-.2.2c-3,3-7.9,3-10.8,0l-1.8-1.8,17.5-17.6c5.6-5.6,5.6-14.6,0-20.1l-.2-.2c-5.6-5.6-14.6-5.6-20.1,0l-1.8,1.8-6.3-6.3-4.6,4.6,6.3,6.3-23.4,23.6-6.3-6.3-4.7,4.7,6.3,6.3-17.4,17.5c-5.6,5.6-5.6,14.6,0,20.1l.2.2c5.6,5.6,14.6,5.6,20.1,0l1.8-1.8,1.8,1.8c5.6,5.6,14.6,5.6,20.1,0l.2-.2c5.2-5.2,5.5-13.6.9-19.2h0s-.5-.5-.5-.5l-4.7,4.7.5.5c2.1,3,1.8,7.1-.8,9.8l-.2.2c-3,3-7.9,3-10.8,0l-1.8-1.8,23.4-23.6,1.8,1.8c5.6,5.6,14.6,5.6,20.1,0l.2-.2c5.2-5.2,5.5-13.6.9-19.2h0ZM83.5,124l-8.2-8.2h0s-.5-.5-.5-.5l-4.6,4.6,8.4,8.4h0s.4.4.4.4l-1.8,1.8c-3,3-7.9,3-10.8,0l-.2-.2c-3-3-3-7.9,0-10.8l17.4-17.5,8.7,8.7,4.7-4.7-8.7-8.7,23.4-23.6,8.7,8.7,4.6-4.6-8.7-8.7,1.8-1.8c3-3,7.9-3,10.8,0l.2.2c3,3,3,7.9,0,10.8l-17.5,17.6-.4-.4h0s-8.3-8.4-8.3-8.4l-4.6,4.6.6.6h0s8.2,8.2,8.2,8.2l-23.4,23.6Z"/>
+  </symbol>
+  <!-- SHAPE KIT -->
+  <!-- Core diamond -->
+  <symbol id="sh-diamond-core" viewBox="0 0 200 200">
+    <rect x="52" y="52" width="96" height="96" rx="26" transform="rotate(45 100 100)" fill="currentColor"/>
+  </symbol>
+  <!-- Concentric -->
+  <symbol id="sh-concentric" viewBox="0 0 200 200">
+    <g fill="none" stroke="currentColor" stroke-width="6">
+      <rect x="30" y="30" width="140" height="140" rx="36" transform="rotate(45 100 100)"/>
+      <rect x="55" y="55" width="90" height="90" rx="24" transform="rotate(45 100 100)"/>
+      <rect x="78" y="78" width="44" height="44" rx="13" transform="rotate(45 100 100)"/>
+    </g>
+  </symbol>
+  <!-- Chevron -->
+  <symbol id="sh-chevron" viewBox="0 0 200 200">
+    <path d="M60 50 L140 100 L60 150" fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+  <!-- Lozenge -->
+  <symbol id="sh-lozenge" viewBox="0 0 200 60">
+    <rect x="8" y="8" width="184" height="44" rx="22" fill="currentColor"/>
+  </symbol>
+  <!-- Outline circle -->
+  <symbol id="sh-outline-circle" viewBox="0 0 200 200">
+    <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="8"/>
+  </symbol>
+  <!-- Halftone grid — dots -->
+  <symbol id="sh-halftone" viewBox="0 0 200 200">
+    <g fill="currentColor">
+      <circle cx="30" cy="30" r="8"/><circle cx="70" cy="30" r="8"/><circle cx="110" cy="30" r="8"/><circle cx="150" cy="30" r="8"/>
+      <circle cx="30" cy="70" r="8"/><circle cx="70" cy="70" r="8"/><circle cx="110" cy="70" r="8"/><circle cx="150" cy="70" r="8"/>
+      <circle cx="30" cy="110" r="8"/><circle cx="70" cy="110" r="8"/><circle cx="110" cy="110" r="8"/><circle cx="150" cy="110" r="8"/>
+      <circle cx="30" cy="150" r="8"/><circle cx="70" cy="150" r="8"/><circle cx="110" cy="150" r="8"/><circle cx="150" cy="150" r="8"/>
+    </g>
+  </symbol>
+  <!-- Striped diamond -->
+  <symbol id="sh-striped-diamond" viewBox="0 0 200 200">
+    <defs>
+      <clipPath id="dclip">
+        <rect x="52" y="52" width="96" height="96" rx="14" transform="rotate(45 100 100)"/>
+      </clipPath>
+    </defs>
+    <rect x="52" y="52" width="96" height="96" rx="14" transform="rotate(45 100 100)" fill="none" stroke="currentColor" stroke-width="6"/>
+    <g clip-path="url(#dclip)" stroke="currentColor" stroke-width="7" opacity=".7">
+      <line x1="0" y1="60" x2="200" y2="60"/><line x1="0" y1="90" x2="200" y2="90"/>
+      <line x1="0" y1="120" x2="200" y2="120"/><line x1="0" y1="150" x2="200" y2="150"/>
+    </g>
+  </symbol>
+  <!-- Knot pair -->
+  <symbol id="sh-knot-pair" viewBox="0 0 200 120">
+    <rect x="20" y="20" width="68" height="80" rx="34" fill="currentColor" opacity=".9"/>
+    <rect x="112" y="20" width="68" height="80" rx="34" fill="currentColor" opacity=".5"/>
+  </symbol>
+</defs>
+</svg>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S01 — LET'S NOT SUGARCOAT IT                   -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-01">
+  <!-- Concentric shape, bottom-right, very subtle -->
+  <svg style="position:absolute;right:-4%;bottom:-4%;width:28%;height:auto;opacity:.04;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-concentric"/></svg>
+  <div class="frame center">
+    <div class="t-hero sz-xl">Let's not<br>sugarcoat it.</div>
+    <div class="rule v" style="margin:clamp(14px,2.5vw,36px) auto 0;"></div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 01</span><span class="label-num">0:00</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S02 — CHALLENGING                              -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-02">
+  <div class="frame">
+    <div class="t-hero sz-lg" style="line-height:1.05;">
+      Challenging<br><span class="dim">for clients.</span>
+    </div>
+    <div class="t-hero sz-lg dim" style="line-height:1.05;margin-top:.1em;">
+      Challenging<br><span class="dimmer">our competitors.</span>
+    </div>
+    <div class="t-hero sz-lg dimmer" style="line-height:1.05;margin-top:.1em;">
+      Challenging<br><span style="color:rgba(255,255,255,.08);">for LACE.</span>
+    </div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 02</span><span class="label-num">0:08</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S03 — A CAUTIOUS MARKET                        -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-03">
+  <img class="bg-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_000618_27e7976f-ca4b-4eeb-9397-762d8ebf229e.jpeg" alt="">
+  <div class="bg-overlay"></div>
+  <div class="vig-b"></div>
+  <!-- Grid lines -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.06;" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <line x1="0" y1="0" x2="1600" y2="900" stroke="#00AEA9" stroke-width="1"/>
+    <line x1="0" y1="0" x2="1600" y2="450" stroke="#00AEA9" stroke-width=".8"/>
+    <line x1="0" y1="0" x2="800" y2="900" stroke="#00AEA9" stroke-width=".8"/>
+    <line x1="400" y1="0" x2="1200" y2="900" stroke="#00AEA9" stroke-width=".6"/>
+    <line x1="800" y1="0" x2="1600" y2="600" stroke="#00AEA9" stroke-width=".6"/>
+  </svg>
+  <!-- Halftone shape, top right, faint -->
+  <svg style="position:absolute;right:5%;top:6%;width:18%;height:auto;opacity:.07;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-halftone"/></svg>
+  <!-- Core diamond, large right -->
+  <svg style="position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:38%;height:auto;opacity:.04;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-diamond-core"/></svg>
+  <div class="frame bottom">
+    <div class="t-hero sz-lg">A cautious<br>market.</div>
+    <div class="t-sub">Slower decisions. More targeted investment.</div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 03</span><span class="label-num">0:22</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S04 — WORK IS SHIFTING                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-04">
+  <img class="bg-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_000620_2bddbf64-052b-4746-94b6-14f46160423f.jpeg" alt="">
+  <div class="bg-overlay"></div>
+  <div class="vig-b"></div>
+  <!-- Teal radial glow right -->
+  <svg style="position:absolute;right:-10%;top:-10%;width:70%;height:auto;opacity:1;" viewBox="0 0 100 100">
+    <ellipse cx="60" cy="40" rx="55" ry="50" fill="rgba(0,174,169,.08)"/>
+  </svg>
+  <!-- Lozenge shape, top-right accent -->
+  <svg style="position:absolute;right:7%;top:9%;width:14%;height:auto;opacity:.12;color:var(--teal-500);" viewBox="0 0 200 60"><use href="#sh-lozenge"/></svg>
+  <!-- Data stream lines -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.08;" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <line x1="0" y1="220" x2="1600" y2="220" stroke="#00AEA9" stroke-width="1" stroke-dasharray="12 28"/>
+    <line x1="0" y1="420" x2="1600" y2="420" stroke="#00AEA9" stroke-width="1" stroke-dasharray="12 28"/>
+    <line x1="0" y1="620" x2="1600" y2="620" stroke="#00AEA9" stroke-width="1" stroke-dasharray="12 28"/>
+    <line x1="0" y1="820" x2="1600" y2="820" stroke="#00AEA9" stroke-width="1" stroke-dasharray="12 28"/>
+  </svg>
+  <div class="frame">
+    <div class="t-eye">AI is disrupting the norms</div>
+    <div class="t-hero sz-xl">Work is<br>shifting.</div>
+    <div class="t-sub" style="margin-top:1.4em;">More from less &nbsp;·&nbsp; Flexible support &nbsp;·&nbsp; Tangible outcomes</div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 04</span><span class="label-num">0:36</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S05 — NOT STARTING AGAIN                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-05">
+  <img class="bg-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_000621_6846be38-57b7-4a5a-8f41-d34c9fe20ea6.jpeg" alt="">
+  <div class="bg-overlay"></div>
+  <div class="vig-b"></div>
+  <!-- Striped diamond, left bleed -->
+  <svg style="position:absolute;left:-8%;top:50%;transform:translateY(-50%);width:26%;height:auto;opacity:.06;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-striped-diamond"/></svg>
+  <!-- Knot pair — two pills, bottom right -->
+  <svg style="position:absolute;right:5%;bottom:6%;width:22%;height:auto;opacity:.1;color:var(--teal-500);" viewBox="0 0 200 120"><use href="#sh-knot-pair"/></svg>
+  <div class="frame">
+    <div class="t-hero sz-lg">Not starting<br>again.</div>
+    <div style="display:flex;flex-direction:column;gap:.5em;margin-top:1.6em;padding-left:clamp(12px,1.8vw,24px);border-left:3px solid var(--teal-500);">
+      <div class="t-sub bold">Specialist expertise.</div>
+      <div class="t-sub bold">Human relationships.</div>
+      <div class="t-sub bold">Real-world delivery.</div>
+    </div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 05</span><span class="label-num">0:50</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S06 — LACE 2.0 HERO REVEAL                    -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-06">
+  <!-- Concentric shapes, corners -->
+  <svg style="position:absolute;left:-3%;bottom:-3%;width:20%;height:auto;opacity:.05;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-concentric"/></svg>
+  <svg style="position:absolute;right:-3%;top:-3%;width:20%;height:auto;opacity:.05;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-concentric"/></svg>
+
+  <div class="frame center">
+    <!-- REAL LOGO LOCKUP — inlined so Franz Sans loads -->
+    <svg viewBox="0 0 1381.58 375.89" style="width:clamp(280px,42%,580px);height:auto;filter:drop-shadow(0 0 clamp(10px,2.5vw,32px) rgba(0,174,169,.45));margin-bottom:clamp(20px,3.5vw,52px);" xmlns="http://www.w3.org/2000/svg">
+      <text style="fill:#fff;font-family:'Franz Sans',sans-serif;font-size:340.79px;font-weight:800;" transform="translate(390.19 289.66)"><tspan style="letter-spacing:.01em" x="0" y="0">L</tspan><tspan style="letter-spacing:-.04em" x="159.82" y="0">A</tspan><tspan x="364.29" y="0">CE</tspan></text>
+      <text style="fill:#00afaa;font-family:'Franz Sans',sans-serif;font-size:181.75px;font-weight:600;" transform="translate(1151.67 154.78)"><tspan style="letter-spacing:-.03em" x="0" y="0">2</tspan><tspan style="letter-spacing:-.05em" x="90.87" y="0">.0</tspan></text>
+      <path fill="#00aea9" d="m88.34,240.86l12.67-12.67-17.12-17.12,63.66-64.03,17.05,17.05,12.67-12.67-17.12-17.12,47.28-47.58c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.82,4.82-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1h0l1.33,1.26,12.75-12.75-1.33-1.33c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-63.59,64.03-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1l12.75-12.75c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-47.51,47.8c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.97-4.97,17.12,17.12-.22-.07Zm-34.69-24.75c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.51-47.8,16.6,16.6,7.11,7.11,12.67-12.67-17.79-17.79h0l-5.93-5.93,63.59-64.03,1.04,1.04h0l22.68,22.68,12.67-12.67-1.41-1.41h0l-22.31-22.31,4.82-4.82c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.28,47.58-23.72-23.72-12.67,12.67,23.79,23.79-63.66,64.03-23.72-23.72-12.67,12.67,23.79,23.79-4.97,4.97-.15-.07Z"/>
+      <path fill="#00aea9" d="m288.53,177.42l-1.33-1.33-12.75,12.75,1.33,1.33h0c5.71,8.15,5.04,19.42-2.22,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,47.51-47.8c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.97,4.97-17.12-17.12-12.6,12.6,17.12,17.12-63.66,64.11-17.05-17.05-12.67,12.67,17.12,17.12-47.28,47.58c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.82-4.82,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l-1.33-1.26-12.75,12.75,1.33,1.33c5.71,8.15,4.97,19.42-2.3,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,63.59-64.03,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l.22.07Zm-138.59,99.09l-22.31-22.31h0l-1.48-1.41-12.6,12.6,22.68,22.68h0l1.04,1.04-4.82,4.82c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.28-47.58,23.72,23.72,12.67-12.67-23.79-23.79,63.66-64.11,23.72,23.72,12.6-12.6-23.79-23.79,4.97-4.97c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.51,47.8-1.11-1.11h0l-22.68-22.68-12.6,12.6,1.48,1.48h0l22.31,22.31-63.59,64.03.15.22Z"/>
+    </svg>
+
+    <div class="t-hero sz-sm" style="font-weight:300;letter-spacing:.01em;">Sharper. More focused. <strong style="font-weight:800;">Commercially confident.</strong></div>
+    <div class="rule lg" style="margin:clamp(14px,2.5vw,36px) auto 0;"></div>
+    <div class="t-eye" style="margin-top:1.4em;margin-bottom:0;">Evolve with purpose</div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 06 — HERO</span><span class="label-num">1:05</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S07 — JUDGEMENT IS HUMAN                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-07">
+  <img class="bg-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_001930_1ea63a55-0e86-45d7-9f68-185f2c56cb62.jpeg" alt="">
+  <div class="bg-overlay"></div>
+  <div class="vig-b"></div>
+  <!-- Vertical divider -->
+  <div style="position:absolute;left:50%;top:8%;bottom:8%;width:1px;background:linear-gradient(to bottom,transparent,rgba(0,174,169,.3),transparent);"></div>
+  <!-- Chevron at divide point -->
+  <svg style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(24px,3vw,44px);height:auto;opacity:.25;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-chevron"/></svg>
+
+  <!-- LEFT — AI -->
+  <div style="position:absolute;left:0;top:0;bottom:0;width:49%;display:flex;flex-direction:column;justify-content:center;padding:7% 5% 7% 8%;">
+    <div class="t-eye" style="color:rgba(255,255,255,.2);">AI at the core</div>
+    <div class="t-hero sz-md dim" style="line-height:1.05;">AI at<br>the core.</div>
+  </div>
+  <!-- RIGHT — Human -->
+  <div style="position:absolute;right:0;top:0;bottom:0;width:49%;display:flex;flex-direction:column;justify-content:center;padding:7% 8% 7% 5%;">
+    <div class="t-eye">People make it matter</div>
+    <div class="t-hero sz-md" style="line-height:1.02;">Judgement<br>is <span class="teal">human.</span></div>
+    <div class="t-sub" style="margin-top:.9em;">Insight is human.<br>Relationships are human.</div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 07</span><span class="label-num">1:20</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S08 — LESS FIXED / MORE CONNECTED              -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-08">
+  <!-- Full network SVG -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <g transform="translate(0,-90)">
+    <!-- Glow behind hub -->
+    <ellipse cx="800" cy="450" rx="220" ry="200" fill="rgba(0,174,169,.12)"/>
+    <ellipse cx="800" cy="450" rx="140" ry="130" fill="rgba(0,174,169,.1)"/>
+
+    <!-- GRID — left, rigid structure -->
+    <g opacity=".38">
+      <rect x="80" y="268" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="80" y="368" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="80" y="468" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="80" y="568" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="185" y="268" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="185" y="368" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="185" y="468" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="185" y="568" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="290" y="268" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="290" y="368" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="290" y="468" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <rect x="290" y="568" width="52" height="52" fill="none" stroke="#00AEA9" stroke-width="1.5" rx="4"/>
+      <!-- Grid connectors -->
+      <line x1="106" y1="294" x2="185" y2="294" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="211" y1="294" x2="290" y2="294" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="106" y1="394" x2="185" y2="394" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="211" y1="394" x2="290" y2="394" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="106" y1="494" x2="185" y2="494" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="211" y1="494" x2="290" y2="494" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="106" y1="594" x2="185" y2="594" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="211" y1="594" x2="290" y2="594" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="106" y1="320" x2="106" y2="368" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="106" y1="420" x2="106" y2="468" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="106" y1="520" x2="106" y2="568" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="211" y1="320" x2="211" y2="368" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="211" y1="420" x2="211" y2="468" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="211" y1="520" x2="211" y2="568" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="316" y1="320" x2="316" y2="368" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="316" y1="420" x2="316" y2="468" stroke="#00AEA9" stroke-width="1"/>
+      <line x1="316" y1="520" x2="316" y2="568" stroke="#00AEA9" stroke-width="1"/>
+      <!-- Dots -->
+      <circle cx="106" cy="294" r="5" fill="#00AEA9"/>
+      <circle cx="211" cy="294" r="5" fill="#00AEA9"/>
+      <circle cx="316" cy="294" r="5" fill="#00AEA9"/>
+      <circle cx="106" cy="394" r="5" fill="#00AEA9"/>
+      <circle cx="211" cy="394" r="5" fill="#00AEA9"/>
+      <circle cx="316" cy="394" r="5" fill="#00AEA9"/>
+      <circle cx="106" cy="494" r="5" fill="#00AEA9"/>
+      <circle cx="211" cy="494" r="5" fill="#00AEA9"/>
+      <circle cx="316" cy="494" r="5" fill="#00AEA9"/>
+      <circle cx="106" cy="594" r="5" fill="#00AEA9"/>
+      <circle cx="211" cy="594" r="5" fill="#00AEA9"/>
+      <circle cx="316" cy="594" r="5" fill="#00AEA9"/>
+    </g>
+
+    <!-- Arrow marker -->
+    <defs>
+      <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 Z" fill="#00AEA9" opacity=".9"/>
+      </marker>
+    </defs>
+    <!-- Flow: grid → hub (dashed arrows, angle-aligned) -->
+    <g opacity=".5" stroke-dasharray="14 18" stroke="#00AEA9" stroke-width="1.5" marker-end="url(#arr)">
+      <line x1="342" y1="294" x2="644" y2="378"/>
+      <line x1="342" y1="394" x2="644" y2="418"/>
+      <line x1="342" y1="494" x2="644" y2="448"/>
+      <line x1="342" y1="594" x2="644" y2="498"/>
+    </g>
+
+    <!-- HUB: LACE 2.0 LOGO — centred in hub circle -->
+    <g filter="url(#glow)">
+      <svg x="724" y="429" width="153" height="42" viewBox="0 0 1381.58 375.89" opacity=".95">
+        <text style="fill:#fff;font-family:'Franz Sans',sans-serif;font-size:340.79px;font-weight:800;" transform="translate(390.19 289.66)"><tspan style="letter-spacing:.01em" x="0" y="0">L</tspan><tspan style="letter-spacing:-.04em" x="159.82" y="0">A</tspan><tspan x="364.29" y="0">CE</tspan></text>
+        <text style="fill:#00afaa;font-family:'Franz Sans',sans-serif;font-size:181.75px;font-weight:600;" transform="translate(1151.67 154.78)"><tspan style="letter-spacing:-.03em" x="0" y="0">2</tspan><tspan style="letter-spacing:-.05em" x="90.87" y="0">.0</tspan></text>
+        <path fill="#00aea9" d="m88.34,240.86l12.67-12.67-17.12-17.12,63.66-64.03,17.05,17.05,12.67-12.67-17.12-17.12,47.28-47.58c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.82,4.82-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1h0l1.33,1.26,12.75-12.75-1.33-1.33c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-63.59,64.03-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1l12.75-12.75c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-47.51,47.8c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.97-4.97,17.12,17.12-.22-.07Zm-34.69-24.75c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.51-47.8,16.6,16.6,7.11,7.11,12.67-12.67-17.79-17.79h0l-5.93-5.93,63.59-64.03,1.04,1.04h0l22.68,22.68,12.67-12.67-1.41-1.41h0l-22.31-22.31,4.82-4.82c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.28,47.58-23.72-23.72-12.67,12.67,23.79,23.79-63.66,64.03-23.72-23.72-12.67,12.67,23.79,23.79-4.97,4.97-.15-.07Z"/>
+        <path fill="#00aea9" d="m288.53,177.42l-1.33-1.33-12.75,12.75,1.33,1.33h0c5.71,8.15,5.04,19.42-2.22,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,47.51-47.8c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.97,4.97-17.12-17.12-12.6,12.6,17.12,17.12-63.66,64.11-17.05-17.05-12.67,12.67,17.12,17.12-47.28,47.58c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.82-4.82,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l-1.33-1.26-12.75,12.75,1.33,1.33c5.71,8.15,4.97,19.42-2.3,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,63.59-64.03,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l.22.07Zm-138.59,99.09l-22.31-22.31h0l-1.48-1.41-12.6,12.6,22.68,22.68h0l1.04,1.04-4.82,4.82c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.28-47.58,23.72,23.72,12.67-12.67-23.79-23.79,63.66-64.11,23.72,23.72,12.6-12.6-23.79-23.79,4.97-4.97c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.51,47.8-1.11-1.11h0l-22.68-22.68-12.6,12.6,1.48,1.48h0l22.31,22.31-63.59,64.03.15.22Z"/>
+      </svg>
+    </g>
+    <!-- Hub rings -->
+    <circle cx="800" cy="450" r="168" fill="none" stroke="#00AEA9" stroke-width="1" opacity=".15" stroke-dasharray="8 16"/>
+    <circle cx="800" cy="450" r="116" fill="none" stroke="#00AEA9" stroke-width="1.5" opacity=".12"/>
+    <text x="800" y="622" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Franz Sans',sans-serif" font-size="16" font-weight="700" letter-spacing="4">STRATEGY HUB</text>
+
+    <!-- Hub → mid-nodes -->
+    <line x1="888" y1="356" x2="1090" y2="210" stroke="#00AEA9" stroke-width="1.5" opacity=".5"/>
+    <line x1="900" y1="450" x2="1110" y2="450" stroke="#00AEA9" stroke-width="1.5" opacity=".5"/>
+    <line x1="888" y1="544" x2="1090" y2="690" stroke="#00AEA9" stroke-width="1.5" opacity=".45"/>
+
+    <!-- Mid nodes -->
+    <circle cx="1098" cy="210" r="16" fill="#00AEA9" opacity=".9" filter="url(#glow)"/>
+    <circle cx="1098" cy="210" r="32" fill="#00AEA9" opacity=".1"/>
+    <text x="1128" y="205" fill="rgba(255,255,255,.7)" font-family="'Franz Sans',sans-serif" font-size="15" font-weight="700" letter-spacing="2">SENIOR LEADERSHIP</text>
+
+    <circle cx="1118" cy="450" r="16" fill="#00AEA9" opacity=".9" filter="url(#glow)"/>
+    <circle cx="1118" cy="450" r="32" fill="#00AEA9" opacity=".1"/>
+    <text x="1148" y="455" fill="rgba(255,255,255,.7)" font-family="'Franz Sans',sans-serif" font-size="15" font-weight="700" letter-spacing="2">DELIVERY TEAMS</text>
+
+    <circle cx="1098" cy="690" r="16" fill="#00AEA9" opacity=".8" filter="url(#glow)"/>
+    <circle cx="1098" cy="690" r="32" fill="#00AEA9" opacity=".1"/>
+    <text x="1128" y="685" fill="rgba(255,255,255,.7)" font-family="'Franz Sans',sans-serif" font-size="15" font-weight="700" letter-spacing="2">SPECIALIST UNITS</text>
+
+    <!-- Sub-nodes -->
+    <g stroke="#00AEA9" stroke-width="1" opacity=".4">
+      <line x1="1114" y1="210" x2="1310" y2="148"/><line x1="1114" y1="210" x2="1310" y2="210"/><line x1="1114" y1="210" x2="1310" y2="272"/>
+      <circle cx="1316" cy="148" r="7" fill="#00AEA9"/><circle cx="1316" cy="210" r="7" fill="#00AEA9"/><circle cx="1316" cy="272" r="7" fill="#00AEA9"/>
+      <line x1="1134" y1="450" x2="1310" y2="390"/><line x1="1134" y1="450" x2="1310" y2="450"/><line x1="1134" y1="450" x2="1310" y2="510"/>
+      <circle cx="1316" cy="390" r="7" fill="#00AEA9"/><circle cx="1316" cy="450" r="7" fill="#00AEA9"/><circle cx="1316" cy="510" r="7" fill="#00AEA9"/>
+      <line x1="1114" y1="690" x2="1310" y2="640"/><line x1="1114" y1="690" x2="1310" y2="690"/><line x1="1114" y1="690" x2="1310" y2="740"/>
+      <circle cx="1316" cy="640" r="7" fill="#00AEA9"/><circle cx="1316" cy="690" r="7" fill="#00AEA9"/><circle cx="1316" cy="740" r="7" fill="#00AEA9"/>
+    </g>
+  </g>
+  </svg>
+
+  <!-- Text — bottom gradient overlay -->
+  <div style="position:absolute;bottom:0;left:0;right:0;padding:3.5% 8% 5.5%;background:linear-gradient(to top,rgba(4,17,26,.88) 0%,transparent 100%);">
+    <div class="t-hero sz-md">Less fixed. Less layered. <span class="teal">More connected.</span></div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 08</span><span class="label-num">1:34</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S09 — BOLDER. IMPOSSIBLE TO MISS.              -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-09">
+  <!-- Teal left-edge bleed -->
+  <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(to bottom,transparent 0%,var(--teal-500) 40%,var(--teal-500) 60%,transparent 100%);opacity:.7;"></div>
+  <div style="position:absolute;left:12px;top:0;bottom:0;width:1.5px;background:linear-gradient(to bottom,transparent 0%,rgba(0,174,169,.35) 40%,rgba(0,174,169,.35) 60%,transparent 100%);"></div>
+  <!-- Double-chevron pair, right bleed -->
+  <svg style="position:absolute;right:3%;top:50%;transform:translateY(-50%);width:20%;height:auto;opacity:.12;color:var(--teal-500);" viewBox="0 0 400 200">
+    <path d="M60 40 L160 100 L60 160" fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M200 40 L300 100 L200 160" fill="none" stroke="currentColor" stroke-width="36" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:5% 8%;gap:.18em;">
+    <div style="font-family:'Franz Sans',sans-serif;font-weight:900;font-size:clamp(30px,4.8vw,82px);line-height:1;letter-spacing:-.05em;color:#fff;">Priority sectors.</div>
+    <div style="font-family:'Franz Sans',sans-serif;font-weight:900;font-size:clamp(30px,4.8vw,82px);line-height:1;letter-spacing:-.05em;color:rgba(255,255,255,.42);">Mid-market routes.</div>
+    <div style="font-family:'Franz Sans',sans-serif;font-weight:900;font-size:clamp(30px,4.8vw,82px);line-height:1;letter-spacing:-.05em;color:rgba(255,255,255,.42);">Active presence.</div>
+    <div style="font-family:'Franz Sans',sans-serif;font-weight:900;font-size:clamp(30px,4.8vw,82px);line-height:1;letter-spacing:-.05em;color:var(--teal-500);">Market awareness.</div>
+    <div style="font-family:'Franz Sans',sans-serif;font-weight:900;font-size:clamp(30px,4.8vw,82px);line-height:1;letter-spacing:-.05em;color:var(--teal-500);">Sharper visibility.</div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 09</span><span class="label-num">1:45</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S10 — PEOPLE STAY AT THE CENTRE               -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-10">
+  <img class="bg-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_132444_e5208f5c-b1fd-4602-b0e8-a3c74b520e05.png" alt="">
+  <div class="bg-overlay"></div>
+  <div class="vig-b"></div>
+  <!-- Warm glow, centred -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:1;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+    <ellipse cx="46" cy="52" rx="38" ry="34" fill="rgba(255,140,50,.03)"/>
+  </svg>
+  <!-- Outline circle, right -->
+  <svg style="position:absolute;right:4%;top:50%;transform:translateY(-50%);width:22%;height:auto;opacity:.06;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-outline-circle"/></svg>
+  <div class="frame">
+    <div class="t-hero sz-lg">People stay<br>at the centre.</div>
+    <div class="rule" style="margin-top:clamp(14px,2.5vw,32px);"></div>
+    <div class="t-sub" style="margin-top:1em;max-width:50ch;">Together, we carry LACE forward.</div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 10</span><span class="label-num">1:58</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S11 — LONG. REWARDING. INTERESTING.           -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-11">
+  <img class="bg-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_000629_2b9b8793-1636-4373-a713-bfe7d2fd0715.jpeg" alt="">
+  <div class="bg-overlay"></div>
+  <div class="vig-b"></div>
+  <!-- Concentric rising, bottom -->
+  <svg style="position:absolute;right:5%;bottom:-6%;width:28%;height:auto;opacity:.06;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-concentric"/></svg>
+  <!-- Teal lift glow from bottom -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:1;" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+    <ellipse cx="50" cy="95" rx="50" ry="28" fill="rgba(0,174,169,.07)"/>
+  </svg>
+  <div class="frame center">
+    <div style="display:flex;flex-direction:column;gap:.18em;text-align:left;width:100%;">
+      <div class="t-hero sz-xl">Long.</div>
+      <div class="t-hero sz-xl dim">Rewarding.</div>
+      <div class="t-hero sz-xl dimmer">Interesting careers.</div>
+    </div>
+    <div class="t-sub bold teal" style="margin-top:1.6em;width:100%;text-align:left;letter-spacing:.03em;">Consult. Shape. Launch.</div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 11</span><span class="label-num">2:08</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S12 — BUILD TOWARDS LACE 2.0 TOGETHER → LOGO  -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-12">
+  <img class="bg-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_000631_c644eea9-26cf-42b7-9352-4738c3161f41.jpeg" alt="">
+  <div class="bg-overlay"></div>
+  <div class="vig-rad"></div>
+  <!-- Converging lines -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.18;" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+    <line x1="0" y1="0" x2="800" y2="450" stroke="#00AEA9" stroke-width="1.2" stroke-dasharray="14 22"/>
+    <line x1="1600" y1="0" x2="800" y2="450" stroke="#00AEA9" stroke-width="1.2" stroke-dasharray="14 22"/>
+    <line x1="0" y1="900" x2="800" y2="450" stroke="#00AEA9" stroke-width="1.2" stroke-dasharray="14 22"/>
+    <line x1="1600" y1="900" x2="800" y2="450" stroke="#00AEA9" stroke-width="1.2" stroke-dasharray="14 22"/>
+    <line x1="0" y1="450" x2="800" y2="450" stroke="#00AEA9" stroke-width="1" stroke-dasharray="14 22"/>
+    <line x1="1600" y1="450" x2="800" y2="450" stroke="#00AEA9" stroke-width="1" stroke-dasharray="14 22"/>
+    <circle cx="800" cy="450" r="10" fill="#00AEA9" opacity=".7"/>
+    <circle cx="800" cy="450" r="28" fill="#00AEA9" opacity=".12"/>
+    <circle cx="800" cy="450" r="58" fill="none" stroke="#00AEA9" stroke-width="1.2" opacity=".25"/>
+    <circle cx="800" cy="450" r="110" fill="none" stroke="#00AEA9" stroke-width=".8" opacity=".12"/>
+  </svg>
+  <!-- Core diamonds at corners -->
+  <svg style="position:absolute;left:-4%;bottom:-4%;width:18%;height:auto;opacity:.05;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-diamond-core"/></svg>
+  <svg style="position:absolute;right:-4%;top:-4%;width:18%;height:auto;opacity:.05;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-diamond-core"/></svg>
+
+  <div class="frame center">
+    <!-- Statement -->
+    <div class="t-hero sz-lg" style="text-align:center;margin-bottom:clamp(24px,4vw,60px);">Built together.</div>
+    <!-- REAL LOGO LOCKUP — inlined -->
+    <svg viewBox="0 0 1381.58 375.89" style="width:clamp(200px,30%,400px);height:auto;opacity:.85;" xmlns="http://www.w3.org/2000/svg">
+      <text style="fill:#fff;font-family:'Franz Sans',sans-serif;font-size:340.79px;font-weight:800;" transform="translate(390.19 289.66)"><tspan style="letter-spacing:.01em" x="0" y="0">L</tspan><tspan style="letter-spacing:-.04em" x="159.82" y="0">A</tspan><tspan x="364.29" y="0">CE</tspan></text>
+      <text style="fill:#00afaa;font-family:'Franz Sans',sans-serif;font-size:181.75px;font-weight:600;" transform="translate(1151.67 154.78)"><tspan style="letter-spacing:-.03em" x="0" y="0">2</tspan><tspan style="letter-spacing:-.05em" x="90.87" y="0">.0</tspan></text>
+      <path fill="#00aea9" d="m88.34,240.86l12.67-12.67-17.12-17.12,63.66-64.03,17.05,17.05,12.67-12.67-17.12-17.12,47.28-47.58c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.82,4.82-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1h0l1.33,1.26,12.75-12.75-1.33-1.33c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-63.59,64.03-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1l12.75-12.75c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-47.51,47.8c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.97-4.97,17.12,17.12-.22-.07Zm-34.69-24.75c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.51-47.8,16.6,16.6,7.11,7.11,12.67-12.67-17.79-17.79h0l-5.93-5.93,63.59-64.03,1.04,1.04h0l22.68,22.68,12.67-12.67-1.41-1.41h0l-22.31-22.31,4.82-4.82c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.28,47.58-23.72-23.72-12.67,12.67,23.79,23.79-63.66,64.03-23.72-23.72-12.67,12.67,23.79,23.79-4.97,4.97-.15-.07Z"/>
+      <path fill="#00aea9" d="m288.53,177.42l-1.33-1.33-12.75,12.75,1.33,1.33h0c5.71,8.15,5.04,19.42-2.22,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,47.51-47.8c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.97,4.97-17.12-17.12-12.6,12.6,17.12,17.12-63.66,64.11-17.05-17.05-12.67,12.67,17.12,17.12-47.28,47.58c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.82-4.82,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l-1.33-1.26-12.75,12.75,1.33,1.33c5.71,8.15,4.97,19.42-2.3,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,63.59-64.03,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l.22.07Zm-138.59,99.09l-22.31-22.31h0l-1.48-1.41-12.6,12.6,22.68,22.68h0l1.04,1.04-4.82,4.82c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.28-47.58,23.72,23.72,12.67-12.67-23.79-23.79,63.66-64.11,23.72,23.72,12.6-12.6-23.79-23.79,4.97-4.97c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.51,47.8-1.11-1.11h0l-22.68-22.68-12.6,12.6,1.48,1.48h0l22.31,22.31-63.59,64.03.15.22Z"/>
+    </svg>
+  </div>
+  <div class="label"><span class="label-tag">Scene 12</span><span class="label-num">2:18</span></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- S13 — STRONGER. SMARTER. BETTER.              -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="scene bg-13">
+  <!-- Concentric corners -->
+  <svg style="position:absolute;left:-3%;bottom:-3%;width:18%;height:auto;opacity:.06;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-concentric"/></svg>
+  <svg style="position:absolute;right:-3%;top:-3%;width:18%;height:auto;opacity:.06;color:var(--teal-500);" viewBox="0 0 200 200"><use href="#sh-concentric"/></svg>
+
+  <div class="frame center">
+    <!-- REAL LOGO LOCKUP — big, centred -->
+    <svg viewBox="0 0 1381.58 375.89" style="width:clamp(340px,55%,720px);height:auto;filter:drop-shadow(0 0 clamp(10px,2vw,28px) rgba(0,174,169,.45));margin-bottom:clamp(20px,3vw,44px);" xmlns="http://www.w3.org/2000/svg">
+      <text style="fill:#fff;font-family:'Franz Sans',sans-serif;font-size:340.79px;font-weight:800;" transform="translate(390.19 289.66)"><tspan style="letter-spacing:.01em" x="0" y="0">L</tspan><tspan style="letter-spacing:-.04em" x="159.82" y="0">A</tspan><tspan x="364.29" y="0">CE</tspan></text>
+      <text style="fill:#00afaa;font-family:'Franz Sans',sans-serif;font-size:181.75px;font-weight:600;" transform="translate(1151.67 154.78)"><tspan style="letter-spacing:-.03em" x="0" y="0">2</tspan><tspan style="letter-spacing:-.05em" x="90.87" y="0">.0</tspan></text>
+      <path fill="#00aea9" d="m88.34,240.86l12.67-12.67-17.12-17.12,63.66-64.03,17.05,17.05,12.67-12.67-17.12-17.12,47.28-47.58c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.82,4.82-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1h0l1.33,1.26,12.75-12.75-1.33-1.33c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-63.59,64.03-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1l12.75-12.75c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-47.51,47.8c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.97-4.97,17.12,17.12-.22-.07Zm-34.69-24.75c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.51-47.8,16.6,16.6,7.11,7.11,12.67-12.67-17.79-17.79h0l-5.93-5.93,63.59-64.03,1.04,1.04h0l22.68,22.68,12.67-12.67-1.41-1.41h0l-22.31-22.31,4.82-4.82c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.28,47.58-23.72-23.72-12.67,12.67,23.79,23.79-63.66,64.03-23.72-23.72-12.67,12.67,23.79,23.79-4.97,4.97-.15-.07Z"/>
+      <path fill="#00aea9" d="m288.53,177.42l-1.33-1.33-12.75,12.75,1.33,1.33h0c5.71,8.15,5.04,19.42-2.22,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,47.51-47.8c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.97,4.97-17.12-17.12-12.6,12.6,17.12,17.12-63.66,64.11-17.05-17.05-12.67,12.67,17.12,17.12-47.28,47.58c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.82-4.82,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l-1.33-1.26-12.75,12.75,1.33,1.33c5.71,8.15,4.97,19.42-2.3,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,63.59-64.03,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l.22.07Zm-138.59,99.09l-22.31-22.31h0l-1.48-1.41-12.6,12.6,22.68,22.68h0l1.04,1.04-4.82,4.82c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.28-47.58,23.72,23.72,12.67-12.67-23.79-23.79,63.66-64.11,23.72,23.72,12.6-12.6-23.79-23.79,4.97-4.97c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.51,47.8-1.11-1.11h0l-22.68-22.68-12.6,12.6,1.48,1.48h0l22.31,22.31-63.59,64.03.15.22Z"/>
+    </svg>
+    <!-- Tagline — stretched to logo width -->
+    <div style="width:clamp(340px,55%,720px);display:flex;justify-content:space-between;align-items:baseline;gap:clamp(8px,1.2vw,18px);">
+      <span style="font-family:'Franz Sans',sans-serif;font-weight:900;font-size:clamp(26px,4.2vw,64px);letter-spacing:-.02em;color:#fff;">Stronger.</span>
+      <span style="font-family:'Franz Sans',sans-serif;font-weight:900;font-size:clamp(26px,4.2vw,64px);letter-spacing:-.02em;color:rgba(255,255,255,.42);">Smarter.</span>
+      <span style="font-family:'Franz Sans',sans-serif;font-weight:900;font-size:clamp(26px,4.2vw,64px);letter-spacing:-.02em;color:var(--teal-500);">Better.</span>
+    </div>
+  </div>
+  <div class="label"><span class="label-tag">Scene 13 — FIN</span><span class="label-num">2:25</span></div>
+</div>
+
+</body>
+</html>

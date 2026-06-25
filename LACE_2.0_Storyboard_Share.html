@@ -5,10 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LACE 2.0 — Storyboard</title>
 <style>
-@font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-Light.otf') format('opentype'); font-weight: 300; }
+  @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-Light.otf') format('opentype'); font-weight: 300; }
+  @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-Medium.otf') format('opentype'); font-weight: 400; }
   @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-Medium.otf') format('opentype'); font-weight: 500; }
+  @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-SemiBold.otf') format('opentype'); font-weight: 600; }
   @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-Bold.otf') format('opentype'); font-weight: 700; }
   @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-ExtraBold.otf') format('opentype'); font-weight: 800; }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
@@ -130,10 +133,21 @@
     overflow: hidden;
     position: relative;
     background: var(--navy);
-    display: flex;
   }
-  .sf-thumb > div { width:100%; height:100%; flex-shrink:0; }
 
+  /* iframe scaled to fill 16:9 thumb */
+  .sf-thumb iframe {
+    width: 1280px;
+    height: 720px;
+    border: none;
+    transform: scale(0.25);
+    transform-origin: top left;
+    pointer-events: none;
+    display: block;
+  }
+
+  /* actual rendered size: 320×180 — container clips it */
+  /* container must be 320×180 → but we use aspect-ratio so let JS set transform */
 
   .sf-label {
     padding: 8px 10px;
@@ -255,12 +269,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">Let's not</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">sugarcoat it.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Let's not sugarcoat it.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="1" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S01 — Title card</div></div>
       </div>
       <div class="clip">
@@ -285,12 +294,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">Challenging</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">our competitors.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Challenging for clients. For the industry. For LACE.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="2" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S02 — Statement</div></div>
       </div>
       <div class="clip">
@@ -324,12 +328,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">A cautious</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">market.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">A cautious market. Slower decisions.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="3" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S03 — Practice areas</div></div>
       </div>
       <div class="clip">
@@ -354,12 +353,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">Work is</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">shifting.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Work is shifting. AI is changing the model.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="4" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S04 — Work</div></div>
       </div>
       <div class="clip">
@@ -384,12 +378,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">Not starting</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">again.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Strong foundations. Expertise. Relationships.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="5" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S05 — Market</div></div>
       </div>
       <div class="clip">
@@ -414,12 +403,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:#00AEA9;line-height:1.05;letter-spacing:-.03em;">LACE 2.0</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:#00AEA9;line-height:1.05;letter-spacing:-.03em;opacity:.45;">Evolve with purpose.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Sharper. More focused. Commercially confident.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="6" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S06 — Confidence</div></div>
       </div>
       <div class="clip">
@@ -453,12 +437,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">AI at</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">the core.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">AI at the core. Judgement is human.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="7" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S07 — AI portal</div></div>
       </div>
       <div class="clip">
@@ -483,12 +462,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">Less fixed.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">More connected.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Less fixed. Less layered. More connected.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="8" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S08 — Careers</div></div>
       </div>
       <div class="clip">
@@ -522,12 +496,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:#00AEA9;line-height:1.05;letter-spacing:-.03em;">Bolder.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:#00AEA9;line-height:1.05;letter-spacing:-.03em;opacity:.45;">Impossible to miss.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Priority sectors. Mid-market. Active presence.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="9" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S09 — Sectors</div></div>
       </div>
       <div class="clip">
@@ -561,12 +530,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">People stay</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">at the centre.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">People stay at the centre. Built by us.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="10" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S10 — Together</div></div>
       </div>
       <div class="clip">
@@ -606,12 +570,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">Long.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">Interesting careers.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Grow. Contribute. Shape together.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="11" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S11 — Delivery</div></div>
       </div>
       <div class="clip">
@@ -645,12 +604,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:#00AEA9;line-height:1.05;letter-spacing:-.03em;">Build towards</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:#00AEA9;line-height:1.05;letter-spacing:-.03em;opacity:.45;">LACE 2.0 together.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Build towards LACE 2.0 together.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="12" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S12 — Built together</div></div>
       </div>
       <div class="clip archive">
@@ -674,12 +628,7 @@
     </div>
     <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr 1fr 1fr;">
       <div class="sf-card">
-        <div class="sf-thumb"><div style="width:100%;height:100%;background:#04111A;display:flex;flex-direction:column;justify-content:center;padding:10% 12%;position:relative;overflow:hidden;">
-  <div style="position:absolute;bottom:0;left:0;width:3px;height:40%;background:#00AEA9;"></div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;">Stronger.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:800;font-size:clamp(14px,3vw,28px);color:white;line-height:1.05;letter-spacing:-.03em;opacity:.45;">Smarter. Better.</div>
-  <div style="font-family:'Franz Sans',sans-serif;font-weight:300;font-size:clamp(7px,1.1vw,11px);color:#00AEA9;margin-top:8%;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;">Stronger. Smarter. Better.</div>
-</div></div>
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="13" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S13 — End card</div></div>
       </div>
       <div class="clip archive">
@@ -721,7 +670,34 @@
 
 </div>
 
+<script>
+  // Scale iframes to fill their 16:9 thumb containers
+  function scaleFrames() {
+    document.querySelectorAll('.sf-thumb').forEach(container => {
+      const iframe = container.querySelector('iframe');
+      if (!iframe) return;
+      const w = container.offsetWidth;
+      const scale = w / 1280;
+      iframe.style.transform = `scale(${scale})`;
+      container.style.height = (720 * scale) + 'px';
+    });
+  }
 
+  // Scroll each iframe to the correct scene after load
+  document.querySelectorAll('.sf-thumb iframe').forEach(iframe => {
+    iframe.addEventListener('load', () => {
+      const scene = parseInt(iframe.dataset.scene);
+      try {
+        // Each scene is 100vh; StyleFrames renders at 720px iframe height
+        const scrollY = (scene - 1) * 720;
+        iframe.contentWindow.scrollTo(0, scrollY);
+      } catch(e) {}
+    });
+  });
+
+  scaleFrames();
+  window.addEventListener('resize', scaleFrames);
+</script>
 
 </body>
 </html>
