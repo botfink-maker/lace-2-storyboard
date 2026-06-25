@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acme — People & Workforce Framework</title>
+<style>
+  @font-face { font-family: 'Franz Sans'; src: url('fonts/FranzSans-Light.otf') format('opentype'); font-weight: 300; }
+  @font-face { font-family: 'Franz Sans'; src: url('fonts/FranzSans-Regular.otf') format('opentype'); font-weight: 400; }
+  @font-face { font-family: 'Franz Sans'; src: url('fonts/FranzSans-Medium.otf') format('opentype'); font-weight: 500; }
+  @font-face { font-family: 'Franz Sans'; src: url('fonts/FranzSans-SemiBold.otf') format('opentype'); font-weight: 600; }
+  @font-face { font-family: 'Franz Sans'; src: url('fonts/FranzSans-Bold.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'Franz Sans'; src: url('fonts/FranzSans-ExtraBold.otf') format('opentype'); font-weight: 800; }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  :root {
+    --navy:    #04111A;
+    --teal:    #00AEA9;
+    --teal-lt: #3DC1BE;
+    --mid:     #0B2030;
+    --white:   #FFFFFF;
+    --off:     #F4F5F6;
+    --muted:   #8A9BA8;
+    --border:  #E2E8EC;
+  }
+
+  body {
+    font-family: 'Franz Sans', sans-serif;
+    background: var(--off);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    padding: 18px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .lace-knot {
+    width: 32px;
+    height: 32px;
+  }
+
+  .lace-wordmark {
+    font-family: 'Franz Sans', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: -.03em;
+  }
+
+  .lace-wordmark span {
+    color: var(--teal);
+    font-weight: 600;
+    font-size: 13px;
+    vertical-align: super;
+    letter-spacing: 0;
+  }
+
+  .header-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(255,255,255,.15);
+  }
+
+  .header-client {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,.5);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .header-client strong {
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .header-meta {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,.35);
+    letter-spacing: .04em;
+    text-align: right;
+  }
+
+  /* ── DOC TITLE ── */
+  .doc-title {
+    background: var(--mid);
+    padding: 28px 40px 24px;
+    border-bottom: 2px solid var(--teal);
+  }
+
+  .doc-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 6px;
+  }
+
+  .doc-title h1 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -.03em;
+    line-height: 1.1;
+  }
+
+  .doc-title h1 em {
+    font-style: normal;
+    color: var(--teal-lt);
+  }
+
+  .doc-subtitle {
+    font-size: 13px;
+    font-weight: 400;
+    color: rgba(255,255,255,.45);
+    margin-top: 6px;
+    letter-spacing: .01em;
+  }
+
+  /* ── MAIN GRID ── */
+  .main {
+    padding: 28px 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ── PHASE CARDS ── */
+  .phase-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .phase-card {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .phase-header {
+    background: var(--navy);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .phase-num {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .phase-header h3 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -.01em;
+  }
+
+  .phase-header .phase-date {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--teal);
+    letter-spacing: .04em;
+  }
+
+  .phase-body {
+    padding: 14px 16px;
+  }
+
+  .phase-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--navy);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .phase-item:last-child { border-bottom: none; }
+
+  .phase-item::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+    margin-top: 5px;
+  }
+
+  .phase-item.done {
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+
+  .phase-item.done::before { background: var(--muted); }
+
+  /* ── METRICS ROW ── */
+  .metrics-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .metric-card {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    padding: 16px;
+  }
+
+  .metric-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .metric-value {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -.04em;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .metric-value span {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--teal);
+    margin-left: 3px;
+  }
+
+  .metric-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  .metric-bar {
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    margin-top: 10px;
+    overflow: hidden;
+  }
+
+  .metric-bar-fill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+
+  /* ── WORKSTREAMS ── */
+  .workstreams {
+    grid-column: 1 / 3;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .section-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .section-header h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--navy);
+  }
+
+  .section-header .badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--teal);
+    background: rgba(0,174,169,.08);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  .ws-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 80px 70px;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+
+  .ws-row:last-child { border-bottom: none; }
+
+  .ws-row .ws-name {
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .ws-row .ws-desc {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  .ws-progress {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .ws-progress-fill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 2px;
+  }
+
+  .ws-status {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  .ws-status.active { background: rgba(0,174,169,.1); color: var(--teal); }
+  .ws-status.review { background: rgba(255,180,0,.1); color: #B8860B; }
+  .ws-status.planned { background: rgba(100,120,140,.1); color: var(--muted); }
+  .ws-status.complete { background: rgba(0,174,169,.06); color: var(--teal); }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .sidebar-card {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .sidebar-card .section-header {
+    background: var(--off);
+  }
+
+  .sidebar-list {
+    padding: 8px 0;
+  }
+
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 16px;
+    font-size: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-item:last-child { border-bottom: none; }
+
+  .sidebar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .sidebar-item .si-label { font-weight: 500; color: var(--navy); flex: 1; }
+  .sidebar-item .si-val { font-size: 11px; font-weight: 700; color: var(--teal); }
+
+  /* ── FOOTER ── */
+  .footer {
+    padding: 12px 40px;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .footer strong { color: var(--navy); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo">
+    <svg class="lace-knot" viewBox="0 0 375.89 375.89" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#00aea9" d="m88.34,240.86l12.67-12.67-17.12-17.12,63.66-64.03,17.05,17.05,12.67-12.67-17.12-17.12,47.28-47.58c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.82,4.82-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1h0l1.33,1.26,12.75-12.75-1.33-1.33c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-63.59,64.03-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1l12.75-12.75c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-47.51,47.8c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.97-4.97,17.12,17.12-.22-.07Zm-34.69-24.75c-8.15,8.15-21.34,8.15-29.5,0l-.44-.44c-8.15-8.15-8.15-21.34,0-29.5l47.51-47.8,16.6,16.6,7.11,7.11,12.67-12.67-17.79-17.79h0l-5.93-5.93,63.59-64.03,1.04,1.04h0l22.68,22.68,12.67-12.67-1.41-1.41h0l-22.31-22.31,4.82-4.82c8.15-8.15,21.34-8.15,29.5,0l.44.44c8.15,8.15,8.15,21.34,0,29.5l-47.28,47.58-23.72-23.72-12.67,12.67,23.79,23.79-63.66,64.03-23.72-23.72-12.67,12.67,23.79,23.79-4.97,4.97-.15-.07Z"/>
+      <path fill="#00aea9" d="m288.53,177.42l-1.33-1.33-12.75,12.75,1.33,1.33h0c5.71,8.15,5.04,19.42-2.22,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,47.51-47.8c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.97,4.97-17.12-17.12-12.6,12.6,17.12,17.12-63.66,64.11-17.05-17.05-12.67,12.67,17.12,17.12-47.28,47.58c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.82-4.82,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l-1.33-1.26-12.75,12.75,1.33,1.33c5.71,8.15,4.97,19.42-2.3,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,63.59-64.03,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l.22.07Z"/>
+    </svg>
+    <div class="lace-wordmark">LACE<span>2.0</span></div>
+    <div class="header-divider"></div>
+    <div class="header-client">Client: <strong>Acme Corporation</strong></div>
+  </div>
+  <div class="header-meta">People & Workforce Transformation<br>Confidential · Q3 2026</div>
+</div>
+
+<!-- DOC TITLE -->
+<div class="doc-title">
+  <div class="doc-tag">HR Operating Model · Transformation Roadmap</div>
+  <h1>Acme People Framework <em>2.0</em></h1>
+  <div class="doc-subtitle">Workforce strategy, operating model design and capability build — delivered by LACE Partners</div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- METRICS -->
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-label">Headcount Impacted</div>
+      <div class="metric-value">4,200<span>↑</span></div>
+      <div class="metric-sub">Across 6 business units</div>
+      <div class="metric-bar"><div class="metric-bar-fill" style="width:72%"></div></div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Workstreams Active</div>
+      <div class="metric-value">7<span>/ 9</span></div>
+      <div class="metric-sub">2 in planning phase</div>
+      <div class="metric-bar"><div class="metric-bar-fill" style="width:78%"></div></div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Programme Health</div>
+      <div class="metric-value">84<span>%</span></div>
+      <div class="metric-sub">On track vs. plan</div>
+      <div class="metric-bar"><div class="metric-bar-fill" style="width:84%"></div></div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Time to Target State</div>
+      <div class="metric-value">18<span>mo</span></div>
+      <div class="metric-sub">Est. completion Q1 2028</div>
+      <div class="metric-bar"><div class="metric-bar-fill" style="width:35%"></div></div>
+    </div>
+  </div>
+
+  <!-- PHASE CARDS -->
+  <div class="phase-row">
+    <div class="phase-card">
+      <div class="phase-header">
+        <div class="phase-num">1</div>
+        <h3>Diagnose & Design</h3>
+        <div class="phase-date">Q2 2026 ✓</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item done">HR operating model audit</div>
+        <div class="phase-item done">Workforce segmentation</div>
+        <div class="phase-item done">Capability gap analysis</div>
+        <div class="phase-item done">Stakeholder alignment workshops</div>
+        <div class="phase-item done">Target operating model design</div>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-header">
+        <div class="phase-num">2</div>
+        <h3>Build & Enable</h3>
+        <div class="phase-date">Q3–Q4 2026</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item">HRBP model redesign</div>
+        <div class="phase-item">AI-enabled HR tooling rollout</div>
+        <div class="phase-item">Manager capability programme</div>
+        <div class="phase-item">Talent framework refresh</div>
+        <div class="phase-item" style="color:var(--muted);">Reward benchmarking review</div>
+      </div>
+    </div>
+    <div class="phase-card">
+      <div class="phase-header">
+        <div class="phase-num">3</div>
+        <h3>Embed & Sustain</h3>
+        <div class="phase-date">Q1–Q2 2027</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item" style="color:var(--muted);">Self-service HR model launch</div>
+        <div class="phase-item" style="color:var(--muted);">People analytics dashboard</div>
+        <div class="phase-item" style="color:var(--muted);">Leadership succession planning</div>
+        <div class="phase-item" style="color:var(--muted);">Change measurement & reporting</div>
+        <div class="phase-item" style="color:var(--muted);">Transition to BAU</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKSTREAMS -->
+  <div class="workstreams">
+    <div class="section-header">
+      <h4>Active Workstreams</h4>
+      <div class="badge">7 active</div>
+    </div>
+    <div class="ws-row" style="background:var(--off);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);">
+      <div>Workstream</div><div>Description</div><div>Progress</div><div>Status</div>
+    </div>
+    <div class="ws-row">
+      <div class="ws-name">HRBP Redesign</div>
+      <div class="ws-desc">Restructure HR business partnering model</div>
+      <div><div class="ws-progress"><div class="ws-progress-fill" style="width:80%"></div></div></div>
+      <div class="ws-status active">Active</div>
+    </div>
+    <div class="ws-row">
+      <div class="ws-name">AI Tooling</div>
+      <div class="ws-desc">Deploy AI-assisted HR processes</div>
+      <div><div class="ws-progress"><div class="ws-progress-fill" style="width:55%"></div></div></div>
+      <div class="ws-status active">Active</div>
+    </div>
+    <div class="ws-row">
+      <div class="ws-name">Talent Framework</div>
+      <div class="ws-desc">Refresh competency and levelling model</div>
+      <div><div class="ws-progress"><div class="ws-progress-fill" style="width:65%"></div></div></div>
+      <div class="ws-status review">Review</div>
+    </div>
+    <div class="ws-row">
+      <div class="ws-name">Manager Capability</div>
+      <div class="ws-desc">Leadership development programme</div>
+      <div><div class="ws-progress"><div class="ws-progress-fill" style="width:40%"></div></div></div>
+      <div class="ws-status active">Active</div>
+    </div>
+    <div class="ws-row">
+      <div class="ws-name">Reward Review</div>
+      <div class="ws-desc">Benchmarking and pay equity analysis</div>
+      <div><div class="ws-progress"><div class="ws-progress-fill" style="width:20%"></div></div></div>
+      <div class="ws-status planned">Planned</div>
+    </div>
+    <div class="ws-row">
+      <div class="ws-name">People Analytics</div>
+      <div class="ws-desc">Dashboard design and data model</div>
+      <div><div class="ws-progress"><div class="ws-progress-fill" style="width:30%"></div></div></div>
+      <div class="ws-status planned">Planned</div>
+    </div>
+    <div class="ws-row">
+      <div class="ws-name">OM Audit</div>
+      <div class="ws-desc">Operating model diagnostic</div>
+      <div><div class="ws-progress"><div class="ws-progress-fill" style="width:100%"></div></div></div>
+      <div class="ws-status complete">Complete</div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <div class="section-header"><h4>Key Risks</h4><div class="badge">3 open</div></div>
+      <div class="sidebar-list">
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:#E85D4A;"></div>
+          <div class="si-label">Change fatigue across middle management</div>
+          <div class="si-val">High</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:#F4A623;"></div>
+          <div class="si-label">HRIS data quality for analytics build</div>
+          <div class="si-val">Med</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:#F4A623;"></div>
+          <div class="si-label">Senior sponsor capacity Q4</div>
+          <div class="si-val">Med</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:var(--teal);"></div>
+          <div class="si-label">AI tooling adoption rate</div>
+          <div class="si-val">Low</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <div class="section-header"><h4>Next Milestones</h4></div>
+      <div class="sidebar-list">
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:var(--teal);"></div>
+          <div class="si-label">HRBP model sign-off</div>
+          <div class="si-val">18 Jul</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:var(--teal);"></div>
+          <div class="si-label">AI tooling pilot launch</div>
+          <div class="si-val">1 Aug</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:var(--teal);"></div>
+          <div class="si-label">Talent framework v1 review</div>
+          <div class="si-val">12 Aug</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:var(--muted);"></div>
+          <div class="si-label">Reward benchmarking kick-off</div>
+          <div class="si-val">Sep</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <div class="section-header"><h4>LACE Team</h4></div>
+      <div class="sidebar-list">
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:var(--navy);"></div>
+          <div class="si-label">Programme Lead</div>
+          <div class="si-val" style="color:var(--navy);">S. Patel</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:var(--navy);"></div>
+          <div class="si-label">HR Design Lead</div>
+          <div class="si-val" style="color:var(--navy);">M. Clarke</div>
+        </div>
+        <div class="sidebar-item">
+          <div class="sidebar-dot" style="background:var(--navy);"></div>
+          <div class="si-label">Technology Lead</div>
+          <div class="si-val" style="color:var(--navy);">R. Okafor</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>Prepared by <strong>LACE Partners</strong> · People & Workforce Transformation Practice</div>
+  <div>Acme Corporation — Confidential · Not for distribution</div>
+  <div>Version 2.4 · Updated <strong>25 Jun 2026</strong></div>
+</div>
+
+</body>
+</html>
