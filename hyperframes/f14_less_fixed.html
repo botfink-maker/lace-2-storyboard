@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div data-composition-id="f14-less-fixed" data-width="1280" data-height="720" style="width:1280px;height:720px;overflow:hidden;position:relative;background:transparent;">
+
+  <style>
+    @font-face { font-family:'FranzSans'; src:url('../assets/FranzSans-ExtraBold.otf') format('opentype'); font-weight:800; font-display:block; }
+    @font-face { font-family:'FranzSans'; src:url('../assets/FranzSans-Light.otf') format('opentype'); font-weight:300; font-display:block; }
+
+    [data-composition-id="f14-less-fixed"] { background:#04111A; font-family:'FranzSans',sans-serif; }
+
+    .signal-mark { position:absolute; bottom:-60px; right:-60px; width:400px; height:400px; opacity:0.1; }
+
+    /* geometric shape lines */
+    .geo-line {
+      position:absolute; background:rgba(0,175,170,0.18);
+    }
+    .geo-h1 { top:160px; left:0; width:100%; height:1px; }
+    .geo-h2 { bottom:160px; left:0; width:100%; height:1px; }
+    .geo-v1 { top:0; left:320px; width:1px; height:100%; }
+
+    .scene-content {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+      padding:80px 120px; box-sizing:border-box; gap:0;
+    }
+
+    .phrase {
+      font-family:'FranzSans',sans-serif; font-weight:800;
+      font-size:84px; line-height:1.0; letter-spacing:-0.025em; color:#ffffff;
+    }
+    .phrase.teal { color:#00afaa; }
+    .phrase-gap { height:10px; }
+
+    .sub-text {
+      font-family:'FranzSans',sans-serif; font-weight:300;
+      font-size:26px; letter-spacing:0.1em; color:rgba(0,175,170,0.7);
+      text-transform:uppercase; margin-top:32px;
+    }
+
+    .scene-label {
+      position:absolute; bottom:32px; right:40px; font-family:'FranzSans',sans-serif;
+      font-weight:300; font-size:13px; letter-spacing:0.12em; color:#00afaa; opacity:0;
+    }
+  </style>
+
+  <svg class="signal-mark" id="signal-mark" viewBox="0 0 375.89 375.89" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path fill="#00aea9" d="m88.34,240.86l12.67-12.67-17.12-17.12,63.66-64.03,17.05,17.05,12.67-12.67-17.12-17.12,47.28-47.58c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.82,4.82-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1h0l1.33,1.26,12.75-12.75-1.33-1.33c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-63.59,64.03-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1l12.75-12.75c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-47.51,47.8c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.97-4.97,17.12,17.12-.22-.07Z"/>
+    <path fill="#00aea9" d="m288.53,177.42l-1.33-1.33-12.75,12.75,1.33,1.33h0c5.71,8.15,5.04,19.42-2.22,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,47.51-47.8c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.97,4.97-17.12-17.12-12.6,12.6,17.12,17.12-63.66,64.11-17.05-17.05-12.67,12.67,17.12,17.12-47.28,47.58c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.82-4.82,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l-1.33-1.26-12.75,12.75,1.33,1.33c5.71,8.15,4.97,19.42-2.3,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,63.59-64.03,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l.22.07Z"/>
+  </svg>
+
+  <div class="geo-line geo-h1" id="geo-h1"></div>
+  <div class="geo-line geo-h2" id="geo-h2"></div>
+  <div class="geo-line geo-v1" id="geo-v1"></div>
+
+  <div class="scene-content">
+    <span class="phrase" id="p1">Less fixed.</span>
+    <div class="phrase-gap"></div>
+    <span class="phrase" id="p2">Less layered.</span>
+    <div class="phrase-gap"></div>
+    <span class="phrase teal" id="p3">More connected.</span>
+    <div class="sub-text" id="sub">Led by expertise.</div>
+  </div>
+
+  <div class="scene-label">FRAME 14</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    gsap.set('#signal-mark', { opacity:0 });
+    gsap.set(['#geo-h1','#geo-h2'], { scaleX:0, transformOrigin:'left center', opacity:0 });
+    gsap.set('#geo-v1', { scaleY:0, transformOrigin:'top center', opacity:0 });
+    gsap.set(['#p1','#p2','#p3'], { opacity:0, x:-40 });
+    gsap.set('#sub', { opacity:0, y:12 });
+    gsap.set('.scene-label', { opacity:0 });
+
+    tl.to('#signal-mark', { opacity:0.1, duration:0.8, ease:'power2.out' }, 0);
+    tl.to(['#geo-h1','#geo-h2'], { scaleX:1, opacity:1, duration:0.6, ease:'power2.out', stagger:0.1 }, 0.1);
+    tl.to('#geo-v1', { scaleY:1, opacity:1, duration:0.5, ease:'power2.out' }, 0.2);
+    tl.to('#p1', { opacity:1, x:0, duration:0.28, ease:'expo.out' }, 0.5);
+    tl.to('#p2', { opacity:1, x:0, duration:0.28, ease:'expo.out' }, 0.66);
+    tl.to('#p3', { opacity:1, x:0, duration:0.28, ease:'expo.out' }, 0.82);
+    tl.to('#sub', { opacity:1, y:0, duration:0.4, ease:'power2.out' }, 1.1);
+    tl.to('.scene-label', { opacity:0.7, duration:0.4, ease:'power2.out' }, 1.2);
+
+    tl.to(['#p1','#p2','#p3','#sub'], { opacity:0, y:-16, duration:0.4, ease:'power2.in', stagger:0.05 }, 4.4);
+    tl.to(['#geo-h1','#geo-h2','#geo-v1'], { opacity:0, duration:0.4, ease:'power2.in' }, 4.4);
+    tl.to('#signal-mark', { opacity:0, duration:0.5, ease:'power2.in' }, 4.4);
+    tl.to('.scene-label', { opacity:0, duration:0.3 }, 4.5);
+
+    window.__timelines['f14-less-fixed'] = tl;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.createElement('button');
+      btn.textContent = '▶ Play';
+      btn.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:999;background:#00afaa;color:#04111A;border:none;padding:10px 28px;font-size:15px;font-weight:700;border-radius:4px;cursor:pointer;letter-spacing:0.08em;';
+      document.body.appendChild(btn);
+      btn.addEventListener('click', function() { tl.restart(); btn.textContent = '↺ Replay'; });
+    });
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div data-composition-id="f21-programme" data-width="1280" data-height="720" style="width:1280px;height:720px;overflow:hidden;position:relative;background:transparent;">
+
+  <style>
+    @font-face { font-family:'FranzSans'; src:url('../assets/FranzSans-ExtraBold.otf') format('opentype'); font-weight:800; font-display:block; }
+    @font-face { font-family:'FranzSans'; src:url('../assets/FranzSans-SemiBold.otf') format('opentype'); font-weight:600; font-display:block; }
+    @font-face { font-family:'FranzSans'; src:url('../assets/FranzSans-Light.otf') format('opentype'); font-weight:300; font-display:block; }
+
+    [data-composition-id="f21-programme"] { background:#04111A; font-family:'FranzSans',sans-serif; }
+
+    .signal-mark { position:absolute; bottom:-60px; right:-60px; width:400px; height:400px; opacity:0.1; }
+
+    .geo-arc {
+      position:absolute; border-radius:50%; border:1px solid rgba(0,175,170,0.15);
+      top:50%; left:50%; transform:translate(-50%,-50%);
+    }
+
+    .scene-content {
+      position:absolute; top:0; left:0; width:100%; height:100%;
+      display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+      padding:80px 120px; box-sizing:border-box;
+    }
+
+    .eyebrow {
+      font-family:'FranzSans',sans-serif; font-weight:300;
+      font-size:18px; letter-spacing:0.18em; text-transform:uppercase;
+      color:rgba(0,175,170,0.6); margin-bottom:20px;
+    }
+    .headline {
+      font-family:'FranzSans',sans-serif; font-weight:800;
+      font-size:96px; line-height:0.95; letter-spacing:-0.03em; color:#ffffff;
+      margin-bottom:32px;
+    }
+    .teal-rule { width:48px; height:2px; background:#00afaa; margin-bottom:28px; }
+    .word-row { display:flex; flex-wrap:wrap; gap:0 36px; }
+    .word {
+      font-family:'FranzSans',sans-serif; font-weight:600;
+      font-size:36px; line-height:1.2; letter-spacing:0.02em; color:rgba(255,255,255,0.75);
+    }
+    .word.teal-w { color:#00afaa; }
+
+    .scene-label {
+      position:absolute; bottom:32px; right:40px; font-family:'FranzSans',sans-serif;
+      font-weight:300; font-size:13px; letter-spacing:0.12em; color:#00afaa; opacity:0;
+    }
+  </style>
+
+  <svg class="signal-mark" id="signal-mark" viewBox="0 0 375.89 375.89" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path fill="#00aea9" d="m88.34,240.86l12.67-12.67-17.12-17.12,63.66-64.03,17.05,17.05,12.67-12.67-17.12-17.12,47.28-47.58c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.82,4.82-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1h0l1.33,1.26,12.75-12.75-1.33-1.33c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-63.59,64.03-4.82-4.82c-15.12-15.12-39.65-15.12-54.7,0l-.44.44c-14.23,14.23-15.05,36.91-2.37,52.1l12.75-12.75c-5.71-8.15-5.04-19.42,2.22-26.68l.44-.44c8.15-8.15,21.34-8.15,29.5,0l4.89,4.89-47.51,47.8c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.97-4.97,17.12,17.12-.22-.07Z"/>
+    <path fill="#00aea9" d="m288.53,177.42l-1.33-1.33-12.75,12.75,1.33,1.33h0c5.71,8.15,5.04,19.42-2.22,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,47.51-47.8c15.12-15.12,15.12-39.65,0-54.7l-.44-.44c-15.12-15.12-39.65-15.12-54.7,0l-4.97,4.97-17.12-17.12-12.6,12.6,17.12,17.12-63.66,64.11-17.05-17.05-12.67,12.67,17.12,17.12-47.28,47.58c-15.12,15.12-15.12,39.65,0,54.7l.44.44c15.12,15.12,39.65,15.12,54.7,0l4.82-4.82,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l-1.33-1.26-12.75,12.75,1.33,1.33c5.71,8.15,4.97,19.42-2.3,26.68l-.44.44c-8.15,8.15-21.34,8.15-29.5,0l-4.89-4.89,63.59-64.03,4.82,4.82c15.12,15.12,39.65,15.12,54.7,0l.44-.44c14.23-14.23,15.05-36.91,2.37-52.1h0l.22.07Z"/>
+  </svg>
+
+  <div class="geo-arc" id="arc1" style="width:900px;height:900px;"></div>
+  <div class="geo-arc" id="arc2" style="width:600px;height:600px;"></div>
+
+  <div class="scene-content">
+    <div class="eyebrow" id="eyebrow">The programme is underway.</div>
+    <div class="headline" id="headline">What comes<br>next.</div>
+    <div class="teal-rule" id="teal-rule"></div>
+    <div class="word-row">
+      <span class="word" id="w1">Consult.</span>
+      <span class="word" id="w2">Shape.</span>
+      <span class="word" id="w3">Launch.</span>
+      <span class="word teal-w" id="w4">Together.</span>
+    </div>
+  </div>
+
+  <div class="scene-label">FRAME 21</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+
+    gsap.set('#signal-mark', { opacity:0 });
+    gsap.set(['#arc1','#arc2'], { opacity:0, scale:1.3, transformOrigin:'center center' });
+    gsap.set('#eyebrow', { opacity:0, y:12 });
+    gsap.set('#headline', { opacity:0, y:50, scale:1.05, transformOrigin:'left center' });
+    gsap.set('#teal-rule', { opacity:0, scaleX:0, transformOrigin:'left center' });
+    gsap.set(['#w1','#w2','#w3','#w4'], { opacity:0, y:20 });
+    gsap.set('.scene-label', { opacity:0 });
+
+    tl.to('#signal-mark', { opacity:0.1, duration:0.8, ease:'power2.out' }, 0);
+    tl.to(['#arc1','#arc2'], { opacity:1, scale:1, duration:1.0, ease:'power2.out', stagger:0.15 }, 0);
+    tl.to('#eyebrow', { opacity:1, y:0, duration:0.4, ease:'power2.out' }, 0.3);
+    tl.to('#headline', { opacity:1, y:0, scale:1, duration:0.3, ease:'expo.out' }, 0.55);
+    tl.to('#teal-rule', { opacity:1, scaleX:1, duration:0.4, ease:'power2.out' }, 0.8);
+    tl.to('#w1', { opacity:1, y:0, duration:0.25, ease:'power2.out' }, 0.95);
+    tl.to('#w2', { opacity:1, y:0, duration:0.25, ease:'power2.out' }, 1.1);
+    tl.to('#w3', { opacity:1, y:0, duration:0.25, ease:'power2.out' }, 1.25);
+    tl.to('#w4', { opacity:1, y:0, duration:0.25, ease:'power2.out' }, 1.4);
+    tl.to('.scene-label', { opacity:0.7, duration:0.4, ease:'power2.out' }, 1.5);
+
+    tl.to(['#eyebrow','#headline','#teal-rule','#w1','#w2','#w3','#w4'], { opacity:0, y:-16, duration:0.4, ease:'power2.in', stagger:0.04 }, 4.4);
+    tl.to(['#arc1','#arc2'], { opacity:0, duration:0.4, ease:'power2.in' }, 4.4);
+    tl.to('#signal-mark', { opacity:0, duration:0.5, ease:'power2.in' }, 4.4);
+    tl.to('.scene-label', { opacity:0, duration:0.3 }, 4.5);
+
+    window.__timelines['f21-programme'] = tl;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var btn = document.createElement('button');
+      btn.textContent = '▶ Play';
+      btn.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:999;background:#00afaa;color:#04111A;border:none;padding:10px 28px;font-size:15px;font-weight:700;border-radius:4px;cursor:pointer;letter-spacing:0.08em;';
+      document.body.appendChild(btn);
+      btn.addEventListener('click', function() { tl.restart(); btn.textContent = '↺ Replay'; });
+    });
+  </script>
+</div>
+</body>
+</html>
