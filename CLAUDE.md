@@ -64,7 +64,7 @@ Before taking any action, read this document in full. Do not generate, upload, o
 | ✅ | AI data network still (65b550a5) | S07 | Approved — keep as is |
 | ✅ | Railway still (adaf84f5) | S08 | Approved — HR exec walking, St Pancras |
 | ✅ | Retail still (72c75a10) | S08 | Approved |
-| ⏳ | Review: London images (ad4d6637, 32344d43) | S09 | Awaiting Dan approval |
+| ✅ | London still (d97142cb) | S09 | Approved — London shot + LACE shapes composited |
 | ❌ | S07 portal re-prompt | S07 | New still needed |
 | ❌ | S05 Archive B + C | S05 | Dan to supply |
 | ❌ | S12 new archive x2 | S12 | Dan to supply |
