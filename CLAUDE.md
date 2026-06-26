@@ -47,7 +47,7 @@ Before taking any action, read this document in full. Do not generate, upload, o
 | S05 | Foundation | ✅ | Clip 23 ✅ | S05 Archive A ✅ · Archive B ❌ · Archive C ❌ | ✅ job 7f0c9d17 | — |
 | S06 | Hero Reveal | ✅ | — | Clip 19 ✅ · Scene 6c ✅ | — | — |
 | S07 | Human + AI | ✅ | Still: 65b550a5 ✅ (AI data network) · Portal re-prompt ❌ | — | ⚠️ Seedance 784529ac (fired early) | — |
-| S08 | Reconfiguring | ✅ | Still: 1539edb0 ✅ (railway) · Still: 72c75a10 ✅ (retail) | — | ⚠️ Seedance d30c208c, c6162b22 (fired early) | — |
+| S08 | Reconfiguring | ✅ | Still: adaf84f5 ✅ (railway — HR exec walking, station) · Still: 72c75a10 ✅ (retail) | — | ⚠️ Seedance d30c208c, c6162b22 (fired early) | — |
 | S09 | External Presence | ✅ | Clip 12a ✅ · Clip 12b ✅ · Clip 15 ✅ · Clip 15b ✅ · London: ad4d6637, 32344d43 (Dan's) | — | ✅ jobs 37de3987, 470e0cbb, c373b283 · ⚠️ 2167644b, 46f97fb8 (fired early) | — |
 | S10 | People First | ✅ | — | Clip 17 ✅ | — | — |
 | S11 | Career Promise | ✅ | — | S11 Archive 1 ✅ · S12a ✅ · S12b ✅ | ✅ jobs d6f957f9, f587b22a | — |
@@ -61,9 +61,9 @@ Before taking any action, read this document in full. Do not generate, upload, o
 | Priority | Item | Scene | Status |
 |---|---|---|---|
 | ❌ | Clip 02 + 03 | S02 | Dan to supply or generate |
-| ⏳ | Review: AI data network still (65b550a5) | S07 | Awaiting Dan approval |
-| ⏳ | Review: Railway still (1539edb0) | S08 | Awaiting Dan approval |
-| ⏳ | Review: Retail still (72c75a10) | S08 | Awaiting Dan approval |
+| ✅ | AI data network still (65b550a5) | S07 | Approved — keep as is |
+| ✅ | Railway still (adaf84f5) | S08 | Approved — HR exec walking, St Pancras |
+| ✅ | Retail still (72c75a10) | S08 | Approved |
 | ⏳ | Review: London images (ad4d6637, 32344d43) | S09 | Awaiting Dan approval |
 | ❌ | S07 portal re-prompt | S07 | New still needed |
 | ❌ | S05 Archive B + C | S05 | Dan to supply |
