@@ -32,6 +32,8 @@ Before taking any action, read this document in full. Do not generate, upload, o
 3. Only then fire **Seedance** to animate
 4. Never fire Seedance speculatively
 
+**If we return to storyboarding at any point — no Seedance on any new visual until Dan has signed off the still. No exceptions. Credits are real money.**
+
 ---
 
 ## Scene Map v3 — Asset Status (aligned to Script v03)
