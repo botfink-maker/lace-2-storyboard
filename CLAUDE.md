@@ -42,7 +42,7 @@ Before taking any action, read this document in full. Do not generate, upload, o
 |---|---|---|---|---|---|---|
 | S01 | Opening | ✅ | — | — | — | ✅ s01_opening.html |
 | S02 | Acknowledgement | ✅ | Clip 01 ✅ · Clip 02 ❌ TBC · Clip 03 ❌ TBC | — | — | — |
-| S03 | Market Pressure | ✅ | Clip 05 ✅ | — | ✅ job e52f331e | — |
+| S03 | Market Pressure | ✅ | Clip 05 ✅ · Cargo Ship ✅ · Markets Clip ✅ | — | ✅ job e52f331e | — |
 | S04 | AI Shift | ✅ | Clip 06 ✅ · Clip 08 ✅ · Clip 09 ✅ · Clip 09b ✅ | — | ✅ jobs e7e38ad1, 183666cc, 62150a93, 75701c0a | — |
 | S05 | Foundation | ✅ | Clip 23 ✅ | S05 Archive A ✅ · Archive B ❌ · Archive C ❌ | ✅ job 7f0c9d17 | — |
 | S06 | Hero Reveal | ✅ | — | Clip 19 ✅ · Scene 6c ✅ | — | — |
