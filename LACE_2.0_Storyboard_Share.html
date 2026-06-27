@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LACE 2.0 — Storyboard</title>
+<title>LACE 2.0 — Storyboard v3</title>
 <style>
   @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-Light.otf') format('opentype'); font-weight: 300; }
   @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-Medium.otf') format('opentype'); font-weight: 400; }
@@ -13,234 +13,84 @@
   @font-face { font-family: 'Franz Sans'; src: url('assets/FranzSans-ExtraBold.otf') format('opentype'); font-weight: 800; }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --navy:#04111A; --mid:#0B2030; --teal:#00AEA9; --muted:rgba(255,255,255,.35); --dim:rgba(255,255,255,.10); }
+  body { font-family:'Franz Sans',sans-serif; background:var(--navy); color:#fff; min-height:100vh; }
 
-  :root {
-    --navy:  #04111A;
-    --mid:   #0B2030;
-    --teal:  #00AEA9;
-    --muted: rgba(255,255,255,.35);
-    --dim:   rgba(255,255,255,.10);
-  }
+  /* HEADER */
+  .header { background:var(--mid); border-bottom:2px solid var(--teal); padding:20px 40px; display:flex; align-items:center; justify-content:space-between; position:sticky; top:0; z-index:100; }
+  .header-left { display:flex; align-items:center; gap:16px; }
+  .lace-knot { width:28px; height:28px; }
+  .header-title { font-size:18px; font-weight:800; letter-spacing:-.03em; }
+  .header-title span { color:var(--teal); font-weight:600; font-size:12px; vertical-align:super; }
+  .header-divider { width:1px; height:24px; background:var(--dim); }
+  .header-sub { font-size:12px; font-weight:500; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; }
+  .header-meta { font-size:11px; color:var(--muted); text-align:right; line-height:1.6; }
+  .header-meta strong { color:var(--teal); font-weight:600; }
 
-  body {
-    font-family: 'Franz Sans', sans-serif;
-    background: var(--navy);
-    color: #fff;
-    min-height: 100vh;
-  }
+  /* FRAMES */
+  .frames { padding:32px 40px 60px; display:flex; flex-direction:column; gap:32px; }
 
-  /* ── HEADER ── */
-  .header {
-    background: var(--mid);
-    border-bottom: 2px solid var(--teal);
-    padding: 20px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .header-left { display: flex; align-items: center; gap: 16px; }
-  .lace-knot { width: 28px; height: 28px; }
-  .header-title { font-size: 18px; font-weight: 800; letter-spacing: -.03em; }
-  .header-title span { color: var(--teal); font-weight: 600; font-size: 12px; vertical-align: super; }
-  .header-divider { width: 1px; height: 24px; background: var(--dim); }
-  .header-sub { font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
-  .header-meta { font-size: 11px; color: var(--muted); text-align: right; line-height: 1.6; }
-  .header-meta strong { color: var(--teal); font-weight: 600; }
+  /* FRAME BLOCK */
+  .frame-block { display:flex; flex-direction:column; }
+  .frame-heading { display:grid; grid-template-columns:auto 1fr; gap:3px 14px; padding-bottom:12px; border-bottom:1px solid var(--dim); margin-bottom:14px; align-items:start; }
+  .frame-badge { background:var(--teal); color:#fff; font-size:10px; font-weight:800; letter-spacing:.08em; padding:4px 10px; border-radius:4px; text-transform:uppercase; grid-row:1; grid-column:1; align-self:start; white-space:nowrap; }
+  .scene-ref { font-size:9px; font-weight:700; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; grid-row:2; grid-column:1; text-align:center; padding-top:2px; }
+  .frame-vo { font-size:11px; font-weight:500; color:rgba(255,255,255,.75); font-style:italic; line-height:1.5; grid-row:1; grid-column:2; }
+  .frame-screen-text { font-size:10px; font-weight:600; color:var(--teal); line-height:1.6; grid-row:2; grid-column:2; letter-spacing:.01em; }
+  .frame-screen-text::before { content:'On screen: '; font-weight:400; color:var(--muted); }
+  .frame-direction { font-size:10px; font-weight:400; color:var(--muted); line-height:1.4; grid-row:3; grid-column:2; margin-top:2px; }
+  .frame-direction::before { content:'↳ '; color:rgba(255,255,255,.15); }
 
-  /* ── SCENES ── */
-  .scenes { padding: 32px 40px 60px; display: flex; flex-direction: column; gap: 40px; }
+  /* FRAME ROW */
+  .frame-row { display:grid; gap:12px; align-items:start; }
 
-  /* ── SCENE BLOCK ── */
-  .scene-block { display: flex; flex-direction: column; gap: 0; }
+  /* STYLE FRAME */
+  .sf-card { background:var(--mid); border-radius:8px; overflow:hidden; border:1px solid var(--teal); }
+  .sf-thumb { width:100%; aspect-ratio:16/9; overflow:hidden; position:relative; background:var(--navy); }
+  .sf-thumb iframe { width:1280px; height:720px; border:none; transform:scale(0.25); transform-origin:top left; pointer-events:none; display:block; }
+  .sf-label { padding:7px 10px; display:flex; align-items:center; gap:8px; border-top:1px solid var(--dim); }
+  .sf-tag { font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); background:rgba(0,174,169,.1); padding:2px 7px; border-radius:3px; }
+  .sf-name { font-size:11px; font-weight:600; color:#fff; }
 
-  .scene-heading {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto auto;
-    gap: 4px 12px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--dim);
-    margin-bottom: 14px;
-    align-items: start;
-  }
-  .scene-num-badge {
-    background: var(--teal);
-    color: #fff;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .08em;
-    padding: 4px 10px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    grid-row: 1;
-    grid-column: 1;
-    align-self: center;
-  }
-  .scene-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: -.01em;
-    grid-row: 1;
-    grid-column: 2;
-  }
-  .scene-vo {
-    font-size: 11px;
-    font-weight: 500;
-    color: rgba(255,255,255,.75);
-    font-style: italic;
-    line-height: 1.5;
-    grid-row: 2;
-    grid-column: 2;
-  }
-  .scene-screen-text {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--teal);
-    line-height: 1.5;
-    grid-row: 3;
-    grid-column: 2;
-    letter-spacing: .01em;
-  }
-  .scene-screen-text::before {
-    content: 'On screen: ';
-    font-weight: 400;
-    color: var(--muted);
-  }
+  /* HYPERFRAMES PLACEHOLDER */
+  .hf-card { background:var(--mid); border-radius:8px; overflow:hidden; border:1px dashed rgba(0,174,169,.5); }
+  .hf-thumb { width:100%; aspect-ratio:16/9; background:#050e16; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:rgba(0,174,169,.6); }
+  .hf-thumb svg { opacity:.5; }
+  .hf-thumb span { font-size:9px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+  .hf-label { padding:7px 10px; display:flex; align-items:center; gap:8px; border-top:1px solid var(--dim); }
+  .hf-tag { font-size:9px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; color:rgba(0,174,169,.7); background:rgba(0,174,169,.07); padding:2px 7px; border-radius:3px; }
+  .hf-name { font-size:11px; font-weight:600; color:rgba(255,255,255,.5); }
 
-  /* ── ROW: style frame + clips ── */
-  .scene-row {
-    display: grid;
-    grid-template-columns: 2fr repeat(auto-fill, minmax(200px, 1fr));
-    gap: 14px;
-    align-items: start;
-  }
-
-  /* ── STYLE FRAME CARD ── */
-  .sf-card {
-    background: var(--mid);
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--teal);
-  }
-
-  .sf-thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    position: relative;
-    background: var(--navy);
-  }
-
-  /* iframe scaled to fill 16:9 thumb */
-  .sf-thumb iframe {
-    width: 1280px;
-    height: 720px;
-    border: none;
-    transform: scale(0.25);
-    transform-origin: top left;
-    pointer-events: none;
-    display: block;
-  }
-
-  /* actual rendered size: 320×180 — container clips it */
-  /* container must be 320×180 → but we use aspect-ratio so let JS set transform */
-
-  .sf-label {
-    padding: 8px 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-top: 1px solid var(--dim);
-  }
-  .sf-tag {
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--teal);
-    background: rgba(0,174,169,.1);
-    padding: 2px 7px;
-    border-radius: 3px;
-  }
-  .sf-name {
-    font-size: 11px;
-    font-weight: 600;
-    color: #fff;
-  }
-
-  /* ── CLIP CARD ── */
-  .clip {
-    background: var(--mid);
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid var(--dim);
-    transition: border-color .2s;
-  }
-  .clip:hover { border-color: rgba(0,174,169,.5); }
-  .clip.archive { opacity: .45; }
-
-  .thumb {
-    width: 100%;
-    aspect-ratio: 16/9;
-    background: #071622;
-    position: relative;
-    overflow: hidden;
-  }
-  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-  .thumb-badge {
-    position: absolute;
-    top: 7px;
-    left: 7px;
-    background: #04111A;
-    color: var(--teal);
-    font-size: 9px;
-    font-weight: 800;
-    padding: 2px 7px;
-    border-radius: 3px;
-    letter-spacing: .04em;
-    font-family: 'Franz Sans', sans-serif;
-    border: 1px solid rgba(0,174,169,.3);
-  }
-  .thumb-badge.arc { color: var(--muted); border-color: var(--dim); }
-
-  .thumb-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    color: var(--muted);
-  }
-  .thumb-placeholder span { font-size: 9px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
-
-  .clip-info { padding: 8px 10px 10px; }
-  .clip-num { font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); margin-bottom: 2px; }
-  .clip-desc { font-size: 11px; font-weight: 600; color: #fff; line-height: 1.3; margin-bottom: 3px; }
-  .clip-meta { font-size: 10px; font-weight: 400; color: var(--muted); line-height: 1.4; }
-  .clip-lens {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--teal);
-    background: rgba(0,174,169,.08);
-    padding: 2px 6px;
-    border-radius: 3px;
-  }
+  /* CLIP */
+  .clip { background:var(--mid); border-radius:8px; overflow:hidden; border:1px solid var(--dim); transition:border-color .2s; }
+  .clip:hover { border-color:rgba(0,174,169,.5); }
+  .clip.archive { opacity:.45; }
+  .clip.pending { border-color:rgba(0,174,169,.3); }
+  .clip.tbc { opacity:.5; border-color:rgba(255,255,255,.1); }
+  .thumb { width:100%; aspect-ratio:16/9; background:#071622; position:relative; overflow:hidden; }
+  .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+  .thumb-badge { position:absolute; top:7px; left:7px; background:#04111A; color:var(--teal); font-size:9px; font-weight:800; padding:2px 7px; border-radius:3px; letter-spacing:.04em; font-family:'Franz Sans',sans-serif; border:1px solid rgba(0,174,169,.3); }
+  .thumb-badge.arc { color:var(--muted); border-color:var(--dim); }
+  .thumb-badge.pnd { color:rgba(0,174,169,.7); border-color:rgba(0,174,169,.3); }
+  .thumb-badge.tbc-b { color:rgba(255,255,255,.25); border-color:rgba(255,255,255,.1); }
+  .thumb-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; color:var(--muted); }
+  .thumb-placeholder span { font-size:9px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; }
+  .clip-info { padding:7px 10px 9px; }
+  .clip-num { font-size:9px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--teal); margin-bottom:2px; }
+  .clip-num.pnd { color:rgba(0,174,169,.7); }
+  .clip-num.tbc-n { color:rgba(255,255,255,.25); }
+  .clip-desc { font-size:11px; font-weight:600; color:#fff; line-height:1.3; margin-bottom:3px; }
+  .clip-meta { font-size:10px; font-weight:400; color:var(--muted); line-height:1.4; }
+  .clip-lens { display:inline-block; margin-top:5px; font-size:9px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--teal); background:rgba(0,174,169,.08); padding:2px 6px; border-radius:3px; }
+  .thumb-badge.lkd { color:#00aea9; border-color:rgba(0,174,169,.5); background:rgba(0,174,169,.12); }
+  .clip-num.lkd-n { color:var(--teal); }
+  .ot { position:absolute; bottom:0; left:0; right:0; padding:10px 9px 8px; background:linear-gradient(to top, rgba(4,17,26,.88) 0%, rgba(4,17,26,0) 100%); pointer-events:none; }
+  .ot-line { display:block; font-size:8.5px; font-weight:700; color:rgba(255,255,255,.9); letter-spacing:.05em; line-height:1.5; }
+  .ot-line .tl { color:#00aea9; }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-left">
     <svg class="lace-knot" viewBox="0 0 375.89 375.89" xmlns="http://www.w3.org/2000/svg">
@@ -249,60 +99,67 @@
     </svg>
     <div class="header-title">LACE<span>2.0</span></div>
     <div class="header-divider"></div>
-    <div class="header-sub">Master Storyboard</div>
+    <div class="header-sub">Master Storyboard · v3 · 24 Frames</div>
   </div>
   <div class="header-meta">
-    13 Scenes · <strong>26 Clips</strong> · 2:30 Runtime<br>
-    Botfink Creative / LACE Partners · 25 Jun 2026
+    Script v03 · <strong>2:30 Runtime</strong><br>
+    Botfink Creative / LACE Partners · 26 Jun 2026
   </div>
 </div>
 
-<div class="scenes">
+<div class="frames">
 
-  <!-- S01 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S01</div>
-      <div class="scene-title">Opening — Let's Not Sugarcoat It</div>
-      <div class="scene-vo">"Let's not sugarcoat it."</div>
-      <div class="scene-screen-text">Let's not sugarcoat it.</div>
+  <!-- F01 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F01</div>
+      <div class="scene-ref">S01</div>
+      <div class="frame-vo">"Let's not sugarcoat it."</div>
+      <div class="frame-screen-text">Let's not sugarcoat it.</div>
+      <div class="frame-direction">Title card. Graphics only.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr;">
+    <div class="frame-row" style="grid-template-columns:2fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="1" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S01 — Title card</div></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S01 — Opening title</div></div>
       </div>
       <div class="clip">
         <div class="thumb"><img src="clip 01.png" alt="01"><div class="thumb-badge">01</div></div>
         <div class="clip-info">
           <div class="clip-num">Clip 01</div>
           <div class="clip-desc">Two people at a table</div>
-          <div class="clip-meta">Client-supplied. Hero opening shot.</div>
+          <div class="clip-meta">Client-supplied. Hero shot.</div>
           <div class="clip-lens">50mm T2.0</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- S02 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S02</div>
-      <div class="scene-title">A Challenging Year</div>
-      <div class="scene-vo">"2026 has been challenging for our clients, our industry, and for LACE. We've had to make hard and painful decisions that have affected us all deeply."</div>
-      <div class="scene-screen-text">Challenging for clients. Challenging for the industry. Challenging for LACE. — Hard decisions, felt by all.</div>
+  <!-- F02 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F02</div>
+      <div class="scene-ref">S02</div>
+      <div class="frame-vo">"The start of 2026 was challenging for our clients, our competitors, and for LACE."</div>
+      <div class="frame-screen-text">Challenging for clients. Challenging for competitors. Challenging for LACE.</div>
+      <div class="frame-direction">Cut to pace of VO — Clips 01, 02, 03.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
-      <div class="sf-card">
-        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="2" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S02 — Statement</div></div>
+    <div class="frame-row" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="clip">
+        <div class="thumb"><img src="clip 01.png" alt="01"><div class="thumb-badge">01</div></div>
+        <div class="clip-info">
+          <div class="clip-num">Clip 01</div>
+          <div class="clip-desc">Two people at a table</div>
+          <div class="clip-meta">Hero — continues from F01.</div>
+          <div class="clip-lens">50mm T2.0</div>
+        </div>
       </div>
       <div class="clip">
         <div class="thumb"><img src="https://d2ol7oe51mr4n9.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/ad4d6637-10f8-46fb-a71f-5ba872c759bb_resize.jpg" alt="02"><div class="thumb-badge">02</div></div>
         <div class="clip-info">
           <div class="clip-num">Clip 02</div>
           <div class="clip-desc">Data & documents on screen</div>
-          <div class="clip-meta">Client-supplied editorial stock.</div>
+          <div class="clip-meta">Client-supplied editorial.</div>
           <div class="clip-lens">105mm T1.5</div>
         </div>
       </div>
@@ -311,50 +168,106 @@
         <div class="clip-info">
           <div class="clip-num">Clip 03</div>
           <div class="clip-desc">Screen-level laptop data</div>
-          <div class="clip-meta">Client-supplied editorial stock.</div>
+          <div class="clip-meta">Client-supplied editorial.</div>
           <div class="clip-lens">85mm T1.5</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- S03 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S03</div>
-      <div class="scene-title">A Cautious Market</div>
-      <div class="scene-vo">"Global events and uncertainty are putting more pressure on an already cautious market. Clients are slower to commit, more selective, and shifting investment into tighter, more targeted pieces of work."</div>
-      <div class="scene-screen-text">A cautious market. Slower decisions. More targeted investment.</div>
+  <!-- F03 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F03</div>
+      <div class="scene-ref">S02</div>
+      <div class="frame-vo">"We've had to make hard and painful decisions that have affected us all deeply."</div>
+      <div class="frame-screen-text">Hard decisions, felt by all.</div>
+      <div class="frame-direction">Fade to navy. Small light font. Hold 2 seconds.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr;">
+    <div class="frame-row" style="grid-template-columns:2fr;">
+      <div class="hf-card">
+        <div class="sf-thumb"><iframe src="hyperframes/f03_hard_decisions.html" scrolling="no"></iframe></div>
+        <div class="hf-label"><div class="hf-tag">HyperFrames</div><div class="hf-name">Hard decisions, felt by all. — fade to navy · Franz Sans Light</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F04 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F04</div>
+      <div class="scene-ref">S03</div>
+      <div class="frame-vo">"Global uncertainty is adding pressure to an already cautious market."</div>
+      <div class="frame-screen-text">Global uncertainty. Cautious market.</div>
+      <div class="frame-direction">Market visual and cargo ship — new AI clip needed.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:1fr;">
+      <div class="clip">
+        <div class="thumb">
+          <video src="assets/cargo-ship.mp4" muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;"></video>
+          <div class="thumb-badge">✅ Client</div>
+        </div>
+        <div class="clip-info">
+          <div class="clip-num">Cargo Ship</div>
+          <div class="clip-desc">Wide establishing — global trade / cautious market</div>
+          <div class="clip-meta">Client supplied · audio muted</div>
+          <div class="clip-lens">23mm T4.0</div>
+        </div>
+      </div>
+      <div class="clip">
+        <div class="thumb">
+          <video src="assets/markets-clip.mp4" muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;" onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;"></video>
+          <div class="thumb-badge">✅ Client</div>
+        </div>
+        <div class="clip-info">
+          <div class="clip-num">Markets Clip</div>
+          <div class="clip-desc">Cautious market — slower decisions, targeted investment</div>
+          <div class="clip-meta">Client supplied · audio muted</div>
+          <div class="clip-lens">50mm T2.8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F05 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F05</div>
+      <div class="scene-ref">S03</div>
+      <div class="frame-vo">"Clients have been slower to commit, more selective, and investing in tighter, more targeted work."</div>
+      <div class="frame-screen-text">A cautious market. Slower decisions. More targeted investment.</div>
+      <div class="frame-direction">S03 style frame + Clip 05. Update: meeting at back of office.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:2fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="3" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S03 — Practice areas</div></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S03 — Cautious market</div></div>
       </div>
       <div class="clip">
         <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150028_4d2d9bbe-e327-40b0-a496-c3398a6352fc_min.webp" alt="05"><div class="thumb-badge">05</div></div>
         <div class="clip-info">
           <div class="clip-num">Clip 05</div>
           <div class="clip-desc">Team at distance — wide</div>
-          <div class="clip-meta">Camera far back. Deep focus.</div>
+          <div class="clip-meta">Meeting at back of office. Deep focus.</div>
           <div class="clip-lens">23mm T4.0</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- S04 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S04</div>
-      <div class="scene-title">AI is Disrupting the Norms</div>
-      <div class="scene-vo">"At the same time, the way work gets done is shifting radically. AI is disrupting the norms. Clients expect more from less: flexible support and tangible outcomes."</div>
-      <div class="scene-screen-text">Work is shifting. AI is changing the model. More from less.</div>
+  <!-- F06 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F06</div>
+      <div class="scene-ref">S04</div>
+      <div class="frame-vo">"At the same time, the way work gets done is shifting radically. AI is disrupting the norms."</div>
+      <div class="frame-screen-text">Work is shifting. AI is changing models. More from less.</div>
+      <div class="frame-direction">Style frame + Clips 06 and 08.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
+    <div class="frame-row" style="grid-template-columns:2fr 1fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="4" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S04 — Work</div></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S04 — AI disruption</div></div>
       </div>
       <div class="clip">
         <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150030_797cad03-59a6-4a92-8cb5-e9941ec24dbc_min.webp" alt="06"><div class="thumb-badge">06</div></div>
@@ -365,6 +278,28 @@
           <div class="clip-lens">105mm T1.5</div>
         </div>
       </div>
+      <div class="clip">
+        <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150033_a356eda4-70fd-41e1-a947-0e5c0c78310a_min.webp" alt="08"><div class="thumb-badge">08</div></div>
+        <div class="clip-info">
+          <div class="clip-num">Clip 08</div>
+          <div class="clip-desc">Hands switching documents</div>
+          <div class="clip-meta">Mid-motion. Laptop beside.</div>
+          <div class="clip-lens">105mm T1.5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F07 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F07</div>
+      <div class="scene-ref">S04</div>
+      <div class="frame-vo">"Clients expect more from less, flexible support and outcome driven results."</div>
+      <div class="frame-screen-text">White text only — frustrated with AI. Bad meeting.</div>
+      <div class="frame-direction">Clips 09 and 09b. White text overlay on footage.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:1fr 1fr;">
       <div class="clip">
         <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_151110_cf6f700b-4797-4eeb-b910-43f1832b88f9_min.webp" alt="09"><div class="thumb-badge">09</div></div>
         <div class="clip-info">
@@ -386,75 +321,19 @@
     </div>
   </div>
 
-  <!-- S05 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S05</div>
-      <div class="scene-title">Strong Foundations</div>
-      <div class="scene-vo">"This shift does not mean starting again. We already have a strong foundation: specialist People expertise, human relationships, real-world delivery and a culture people care about."</div>
-      <div class="scene-screen-text">Not starting again. Strong foundations. Expertise. Relationships. Real-world delivery.</div>
+  <!-- F08 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F08</div>
+      <div class="scene-ref">S05</div>
+      <div class="frame-vo">"This shift does not mean starting again. We already have a strong foundation: specialist People expertise, trusted interpersonal relationships, real-world delivery experience"</div>
+      <div class="frame-screen-text">We're not starting again. Strong foundations. Expertise. Trusted relationships. Real-world delivery.</div>
+      <div class="frame-direction">Style frame → Clip 23 → S05 Archives A/B/C. Cut on beat of VO.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr 1fr 1fr;">
+    <div class="frame-row" style="grid-template-columns:2fr 1fr 1fr 1fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="5" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S05 — Market</div></div>
-      </div>
-      <div class="clip">
-        <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150033_a356eda4-70fd-41e1-a947-0e5c0c78310a_min.webp" alt="08"><div class="thumb-badge">08</div></div>
-        <div class="clip-info">
-          <div class="clip-num">Clip 08</div>
-          <div class="clip-desc">Hands switching documents</div>
-          <div class="clip-meta">Mid-motion. Laptop beside.</div>
-          <div class="clip-lens">105mm T1.5</div>
-        </div>
-      </div>
-      <div class="clip archive">
-        <div class="thumb"><img src="scene 5 01.jpg" alt="S05-01"><div class="thumb-badge arc">A</div></div>
-        <div class="clip-info">
-          <div class="clip-num">S05 Archive A</div>
-          <div class="clip-desc">Archive — people</div>
-          <div class="clip-meta">Client-held.</div>
-        </div>
-      </div>
-      <div class="clip archive">
-        <div class="thumb"><img src="scene 5 02.jpg" alt="S05-02"><div class="thumb-badge arc">B</div></div>
-        <div class="clip-info">
-          <div class="clip-num">S05 Archive B</div>
-          <div class="clip-desc">Archive — people</div>
-          <div class="clip-meta">Client-held.</div>
-        </div>
-      </div>
-      <div class="clip archive">
-        <div class="thumb"><img src="scene 5 03.jpg" alt="S05-03"><div class="thumb-badge arc">C</div></div>
-        <div class="clip-info">
-          <div class="clip-num">S05 Archive C</div>
-          <div class="clip-desc">Archive — people</div>
-          <div class="clip-meta">Client-held.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- S06 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S06</div>
-      <div class="scene-title">LACE 2.0 — Evolve with Purpose</div>
-      <div class="scene-vo">"LACE 2.0 is the path to how we evolve with purpose. Making us stronger, sharper, more focused and more commercially confident, to make the greatest impact. It means evolving how we package, price and take our work to market, with an operating model that supports it."</div>
-      <div class="scene-screen-text">LACE 2.0. Evolve with purpose. Sharper. More focused. Commercially confident.</div>
-    </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
-      <div class="sf-card">
-        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="6" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S06 — Confidence</div></div>
-      </div>
-      <div class="clip archive">
-        <div class="thumb"><img src="clip 19.jpg" alt="19"><div class="thumb-badge arc">19</div></div>
-        <div class="clip-info">
-          <div class="clip-num">Clip 19</div>
-          <div class="clip-desc">Archive footage</div>
-          <div class="clip-meta">Client-held.</div>
-        </div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S05 — Foundation</div></div>
       </div>
       <div class="clip">
         <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150051_bc07998a-891e-458d-963b-b6416f06baa0_min.webp" alt="23"><div class="thumb-badge">23</div></div>
@@ -466,78 +345,224 @@
         </div>
       </div>
       <div class="clip archive">
-        <div class="thumb"><img src="scene 6 c.jpg" alt="S06C"><div class="thumb-badge arc">C</div></div>
+        <div class="thumb"><img src="scene 5 01.jpg" alt="S05-A"><div class="thumb-badge arc">A</div></div>
         <div class="clip-info">
-          <div class="clip-num">Scene 6 C</div>
-          <div class="clip-desc">Archive footage</div>
+          <div class="clip-num">S05 Archive A</div>
+          <div class="clip-desc">LACE people</div>
           <div class="clip-meta">Client-held.</div>
         </div>
       </div>
+      <div class="clip archive">
+        <div class="thumb"><img src="scene 5 02.jpg" alt="S05-B"><div class="thumb-badge arc">B</div></div>
+        <div class="clip-info">
+          <div class="clip-num">S05 Archive B</div>
+          <div class="clip-desc">LACE people</div>
+          <div class="clip-meta">Dan to supply new clip.</div>
+        </div>
+      </div>
+      <div class="clip archive">
+        <div class="thumb"><img src="scene 5 03.jpg" alt="S05-C"><div class="thumb-badge arc">C</div></div>
+        <div class="clip-info">
+          <div class="clip-num">S05 Archive C</div>
+          <div class="clip-desc">LACE people</div>
+          <div class="clip-meta">Dan to supply new clip.</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- S07 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S07</div>
-      <div class="scene-title">AI at the Core</div>
-      <div class="scene-vo">"AI will be at the core, helping us move faster, reduce repetition and create more value. But it is our people who make the work matter. The judgement is human. The insight and oversight are human. The relationships are human."</div>
-      <div class="scene-screen-text">AI at the core. Judgement is human. Insight is human. Relationships are human.</div>
+  <!-- F09 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F09</div>
+      <div class="scene-ref">S05</div>
+      <div class="frame-vo">"…and a culture people care about."</div>
+      <div class="frame-direction">Montage of LACE people. No on-screen text. Clip 19 + Scene 6c.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr;">
+    <div class="frame-row" style="grid-template-columns:1fr 1fr;">
+      <div class="clip archive">
+        <div class="thumb"><img src="clip 19.jpg" alt="19"><div class="thumb-badge arc">19</div></div>
+        <div class="clip-info">
+          <div class="clip-num">Clip 19</div>
+          <div class="clip-desc">LACE people montage</div>
+          <div class="clip-meta">Culture beat. Client-held.</div>
+        </div>
+      </div>
+      <div class="clip archive">
+        <div class="thumb"><img src="scene 6 c.jpg" alt="6c"><div class="thumb-badge arc">6c</div></div>
+        <div class="clip-info">
+          <div class="clip-num">Scene 6c</div>
+          <div class="clip-desc">LACE people montage</div>
+          <div class="clip-meta">Culture beat. Client-held.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F10 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F10</div>
+      <div class="scene-ref">S06</div>
+      <div class="frame-vo">"LACE 2.0 is how we evolve with purpose. Stronger, sharper, more focused and more commercially confident."</div>
+      <div class="frame-screen-text">LACE 2.0. Evolve with purpose. Sharper. More focused. Confident.</div>
+      <div class="frame-direction">Just graphics. Style frame + HyperFrames.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:2fr 1fr;">
+      <div class="sf-card">
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="6" scrolling="no"></iframe></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S06 — LACE 2.0 reveal</div></div>
+      </div>
+      <div class="hf-card">
+        <div class="sf-thumb"><iframe src="hyperframes/f10_lace2_reveal.html" scrolling="no"></iframe></div>
+        <div class="hf-label"><div class="hf-tag">HyperFrames</div><div class="hf-name">LACE 2.0. Evolve with purpose.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F11 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F11</div>
+      <div class="scene-ref">S06</div>
+      <div class="frame-vo">"It changes how we take our work to market, package, price and deliver for our clients, with an operating model built to support it."</div>
+      <div class="frame-screen-text">Changes how we: Take work to market. Package. Price. Deliver.</div>
+      <div class="frame-direction">Just graphics. Stacked list reveal — HyperFrames.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:2fr;">
+      <div class="hf-card">
+        <div class="sf-thumb"><iframe src="hyperframes/f11_changes_how_we.html" scrolling="no"></iframe></div>
+        <div class="hf-label"><div class="hf-tag">HyperFrames</div><div class="hf-name">Changes how we: Take work to market. Package. Price. Deliver.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F12 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F12</div>
+      <div class="scene-ref">S07</div>
+      <div class="frame-vo">"AI will be at the core, helping us move faster, reduce duplication and free up more time for higher-value work. But it is our people who make the work matter."</div>
+      <div class="frame-screen-text">AI at the core. Move faster. Reduce duplication. Free up time.</div>
+      <div class="frame-direction">Abstract digital network clip — teal/navy lines from glowing core. Style frame + AI network still.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:2fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="7" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S07 — AI portal</div></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S07 — AI at the core</div></div>
+      </div>
+      <div class="clip">
+        <div class="thumb">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260626_144128_65b550a5-903a-49f1-a772-e25b03ba7469_min.webp" alt="AI Network Still">
+          <div class="thumb-badge lkd">✅ 65b550a5</div>
+          <div class="ot"><span class="ot-line">AI at the core. Move faster. Reduce duplication. <span class="tl">Free up time.</span></span></div>
+        </div>
+        <div class="clip-info">
+          <div class="clip-num lkd-n">AI Network Still</div>
+          <div class="clip-desc">Professional reviewing data network on screen</div>
+          <div class="clip-meta">Job 65b550a5 — Dan approved ✅</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- S08 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S08</div>
-      <div class="scene-title">Less Fixed. More Connected.</div>
-      <div class="scene-vo">"We become less fixed, less layered and more connected. Our offer moves with our clients, led by senior expertise and focused where we can create the most value."</div>
-      <div class="scene-screen-text">Less fixed. Less layered. More connected. Led by expertise.</div>
+  <!-- F13 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F13</div>
+      <div class="scene-ref">S07</div>
+      <div class="frame-vo">"The judgement is human. The insight and oversight are human. The relationships are human."</div>
+      <div class="frame-screen-text">Judgement is human. Insight is human. Relationships are human.</div>
+      <div class="frame-direction">Use existing S07 visual — improve portal re-prompt. New still needed.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
+    <div class="frame-row" style="grid-template-columns:1fr;">
+      <div class="clip tbc">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span>TBC — Portal Re-prompt</span>
+          </div>
+          <div class="thumb-badge tbc-b">TBC</div>
+        </div>
+        <div class="clip-info">
+          <div class="clip-num tbc-n">Portal Re-prompt</div>
+          <div class="clip-desc">Improved portal / human connection visual</div>
+          <div class="clip-meta">Use S07 style frame as reference. New still needed before Seedance.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F14 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F14</div>
+      <div class="scene-ref">S08</div>
+      <div class="frame-vo">"Less fixed. Less layered. More connected."</div>
+      <div class="frame-screen-text">Less fixed. Less layered. More connected. Led by expertise.</div>
+      <div class="frame-direction">Graphics and shapes. Style frame + HyperFrames.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:2fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="8" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S08 — Careers</div></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S08 — Less fixed</div></div>
       </div>
+      <div class="hf-card">
+        <div class="sf-thumb"><iframe src="hyperframes/f14_less_fixed.html" scrolling="no"></iframe></div>
+        <div class="hf-label"><div class="hf-tag">HyperFrames</div><div class="hf-name">Less fixed. Less layered. More connected. Led by expertise.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F15 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F15</div>
+      <div class="scene-ref">S08</div>
+      <div class="frame-vo">"Our offer moves with our clients, led by senior expertise and where we can create the most value."</div>
+      <div class="frame-direction">New sector clips — transport + retail. No on-screen text. Awaiting Dan review.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:1fr 1fr;">
       <div class="clip">
-        <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_145716_b2451bc1-b885-4f69-bdfa-fd904933839a_min.webp" alt="11"><div class="thumb-badge">11</div></div>
+        <div class="thumb">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260626_213404_adaf84f5-c283-43b5-b785-b736932e97d0_min.webp" alt="Railway Still">
+          <div class="thumb-badge lkd">✅ adaf84f5</div>
+        </div>
         <div class="clip-info">
-          <div class="clip-num">Clip 11</div>
-          <div class="clip-desc">Acme HR framework on screen</div>
-          <div class="clip-meta">LACE-branded dashboard.</div>
-          <div class="clip-lens">85mm T1.5</div>
+          <div class="clip-num lkd-n">Transport Still</div>
+          <div class="clip-desc">HR exec walking towards camera, St Pancras</div>
+          <div class="clip-meta">Job adaf84f5 — Dan approved ✅</div>
+          <div class="clip-lens">50mm T2.0</div>
         </div>
       </div>
       <div class="clip">
-        <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150035_2664c360-0e9b-4830-9303-944c116051fa_min.webp" alt="12"><div class="thumb-badge">12</div></div>
+        <div class="thumb">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260626_144131_72c75a10-eb0e-4123-a730-f7c74bc39ec6_min.webp" alt="Retail Still">
+          <div class="thumb-badge lkd">✅ 72c75a10</div>
+        </div>
         <div class="clip-info">
-          <div class="clip-num">Clip 12</div>
-          <div class="clip-desc">Two people — collaborative</div>
-          <div class="clip-meta">Side-on. Document gesture.</div>
+          <div class="clip-num lkd-n">Retail Still</div>
+          <div class="clip-desc">Staff + customer in conversation, modern retail</div>
+          <div class="clip-meta">Job 72c75a10 — Dan approved ✅</div>
           <div class="clip-lens">50mm T2.0</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- S09 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S09</div>
-      <div class="scene-title">Bolder. Clearer. Impossible to Miss.</div>
-      <div class="scene-vo">"That means clearer priority sectors, stronger routes into the mid-market and a more active presence where clients are already looking. The outside world needs to feel the shift too. No longer found by chance. Bolder, clearer and impossible to miss."</div>
-      <div class="scene-screen-text">Priority sectors. Mid-market. Active presence. Bolder. Clearer. Impossible to miss.</div>
+  <!-- F16 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F16</div>
+      <div class="scene-ref">S09</div>
+      <div class="frame-vo">"That means clearer priority sectors, stronger mid-market routes and a more active presence where clients are already looking."</div>
+      <div class="frame-screen-text">Priority sectors. Mid-market routes. Active presence. That meet client needs.</div>
+      <div class="frame-direction">Clips 12a, 15, 15b — timed to beat of VO.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
+    <div class="frame-row" style="grid-template-columns:2fr 1fr 1fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="9" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S09 — Sectors</div></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S09 — Priority sectors</div></div>
       </div>
       <div class="clip">
         <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150045_2441ac37-a21d-4e76-8860-a8ce2e36c03c_min.webp" alt="12a"><div class="thumb-badge">12a</div></div>
@@ -547,79 +572,6 @@
           <div class="clip-meta">Six people. London skyline.</div>
           <div class="clip-lens">23mm T4.0</div>
         </div>
-      </div>
-      <div class="clip">
-        <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_151025_fc4d95dc-810f-4001-9b86-b92aaa9494d3_min.webp" alt="12b"><div class="thumb-badge">12b</div></div>
-        <div class="clip-info">
-          <div class="clip-num">Clip 12b</div>
-          <div class="clip-desc">Shard — warm two-person</div>
-          <div class="clip-meta">High-floor. London panorama.</div>
-          <div class="clip-lens">85mm T1.5</div>
-        </div>
-      </div>
-      <div class="clip">
-        <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150042_3bbe3ad5-5c86-4630-b2c7-5ba505054695_min.webp" alt="14"><div class="thumb-badge">14</div></div>
-        <div class="clip-info">
-          <div class="clip-num">Clip 14</div>
-          <div class="clip-desc">Senior reviewing AI output</div>
-          <div class="clip-meta">Notes beside laptop.</div>
-          <div class="clip-lens">85mm T1.5</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- S10 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S10</div>
-      <div class="scene-title">People Stay at the Centre</div>
-      <div class="scene-vo">"And through all of this, people stay at the centre. The team that built LACE carries it forward and will define what comes next."</div>
-      <div class="scene-screen-text">People stay at the centre. Built by us. Carried forward by us.</div>
-    </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr;">
-      <div class="sf-card">
-        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="10" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S10 — Together</div></div>
-      </div>
-      <div class="clip">
-        <div class="thumb">
-          <div class="thumb-placeholder">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <span>Hero Approved</span>
-          </div>
-          <div class="thumb-badge">13</div>
-        </div>
-        <div class="clip-info">
-          <div class="clip-num">Clip 13</div>
-          <div class="clip-desc">Hero shot — LACE</div>
-          <div class="clip-meta">From Higgsfield history.</div>
-          <div class="clip-lens">85mm T1.5</div>
-        </div>
-      </div>
-      <div class="clip archive">
-        <div class="thumb"><img src="clip 17.jpg" alt="17"><div class="thumb-badge arc">17</div></div>
-        <div class="clip-info">
-          <div class="clip-num">Clip 17</div>
-          <div class="clip-desc">Archive — Dan to supply</div>
-          <div class="clip-meta">Client-held footage.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- S11 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S11</div>
-      <div class="scene-title">Long. Rewarding. Interesting Careers.</div>
-      <div class="scene-vo">"We want this to be a place where people build long, rewarding, interesting careers. To grow, contribute and feel part of something with a future. A place where change is something we shape together."</div>
-      <div class="scene-screen-text">Long. Rewarding. Interesting careers. Grow. Contribute. Shape together.</div>
-    </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr 1fr 1fr;">
-      <div class="sf-card">
-        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="11" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S11 — Delivery</div></div>
       </div>
       <div class="clip">
         <div class="thumb"><img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260625_150833_bf8e44dc-1734-4f98-ab52-9a78101b74f6_min.webp" alt="15"><div class="thumb-badge">15</div></div>
@@ -639,77 +591,204 @@
           <div class="clip-lens">85mm T1.5</div>
         </div>
       </div>
-      <div class="clip archive">
-        <div class="thumb"><img src="scene 11 01.jpg" alt="S11-01"><div class="thumb-badge arc">A</div></div>
+    </div>
+  </div>
+
+  <!-- F17 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F17</div>
+      <div class="scene-ref">S09</div>
+      <div class="frame-vo">"Our brand recognition needs to change too, through greater market awareness, sharper visibility and more focused business development."</div>
+      <div class="frame-screen-text">Brand recognition. Greater awareness. Sharper visibility. Focused business Dev.</div>
+      <div class="frame-direction">New AI clip — London skyline. Tower Bridge + Shard with LACE geometric overlays anchored to scene.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:1fr;">
+      <div class="clip">
+        <div class="thumb">
+          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3BijbahRgoJnQmfMb8eRp4F6xIh/hf_20260626_220338_d97142cb-a56b-493c-a8ab-264e062bc780_min.webp" alt="London Skyline">
+          <div class="thumb-badge lkd">✅ d97142cb</div>
+          <div class="ot"><span class="ot-line">Brand recognition. Greater awareness. <span class="tl">Sharper visibility.</span> Focused business Dev.</span></div>
+        </div>
         <div class="clip-info">
-          <div class="clip-num">S11 Archive A</div>
-          <div class="clip-desc">Archive — people</div>
+          <div class="clip-num lkd-n">London Skyline</div>
+          <div class="clip-desc">Tower Bridge + Shard — LACE shapes anchored to scene</div>
+          <div class="clip-meta">Job d97142cb — Dan approved ✅</div>
+          <div class="clip-lens">23mm T4.0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F18 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F18</div>
+      <div class="scene-ref">S10</div>
+      <div class="frame-vo">"And at the centre of all of this are our people. Together, this team carries LACE forward."</div>
+      <div class="frame-screen-text">At the centre… our people.</div>
+      <div class="frame-direction">Style frame S10 only. No clips.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:2fr;">
+      <div class="sf-card">
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="10" scrolling="no"></iframe></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S10 — People at the centre</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F19 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F19</div>
+      <div class="scene-ref">S11</div>
+      <div class="frame-vo">"We want LACE to be a place where people build long, rewarding, fulfilling careers,"</div>
+      <div class="frame-screen-text">Long. Rewarding. Fulfilling careers.</div>
+      <div class="frame-direction">S11 style frame.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:2fr;">
+      <div class="sf-card">
+        <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="11" scrolling="no"></iframe></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S11 — Career promise</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F20 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F20</div>
+      <div class="scene-ref">S11</div>
+      <div class="frame-vo">"…with space to grow, contribute and shape something with a future."</div>
+      <div class="frame-direction">S11 Archive 1, S12a, S12b. No on-screen text.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:1fr 1fr 1fr;">
+      <div class="clip archive">
+        <div class="thumb"><img src="scene 11 01.jpg" alt="S11-A"><div class="thumb-badge arc">A</div></div>
+        <div class="clip-info">
+          <div class="clip-num">S11 Archive 1</div>
+          <div class="clip-desc">LACE people — archive</div>
           <div class="clip-meta">Client-held.</div>
         </div>
       </div>
       <div class="clip archive">
-        <div class="thumb"><img src="scene 11 02.jpg" alt="S11-02"><div class="thumb-badge arc">B</div></div>
+        <div class="thumb"><img src="scene 12 01.jpg" alt="S12a"><div class="thumb-badge arc">S12a</div></div>
         <div class="clip-info">
-          <div class="clip-num">S11 Archive B</div>
-          <div class="clip-desc">Archive — people</div>
+          <div class="clip-num">S12 Archive a</div>
+          <div class="clip-desc">LACE people — archive</div>
+          <div class="clip-meta">Client-held.</div>
+        </div>
+      </div>
+      <div class="clip archive">
+        <div class="thumb"><img src="scene 12 02.jpg" alt="S12b"><div class="thumb-badge arc">S12b</div></div>
+        <div class="clip-info">
+          <div class="clip-num">S12 Archive b</div>
+          <div class="clip-desc">LACE people — archive</div>
           <div class="clip-meta">Client-held.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- S12 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S12</div>
-      <div class="scene-title">Build Towards LACE 2.0 Together</div>
-      <div class="scene-vo">"So we hold on to what makes LACE different, leave behind what no longer works, and build towards LACE 2.0 together."</div>
-      <div class="scene-screen-text">Build towards LACE 2.0 together.</div>
+  <!-- F21 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F21</div>
+      <div class="scene-ref">S12</div>
+      <div class="frame-vo">"The programme is already underway. Over the next few months, we'll consult, shape the path ahead and launch what comes next, bringing everyone with us."</div>
+      <div class="frame-screen-text">Programme underway. Consult. Shape. Launch. Together.</div>
+      <div class="frame-direction">Graphic and shapes. Style frame + HyperFrames.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr 1fr 1fr 1fr;">
+    <div class="frame-row" style="grid-template-columns:2fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="12" scrolling="no"></iframe></div>
-        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S12 — Built together</div></div>
+        <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S12 — Programme underway</div></div>
       </div>
+      <div class="hf-card">
+        <div class="sf-thumb"><iframe src="hyperframes/f21_programme.html" scrolling="no"></iframe></div>
+        <div class="hf-label"><div class="hf-tag">HyperFrames</div><div class="hf-name">Programme underway. Consult. Shape. Launch. Together.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F22 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F22</div>
+      <div class="scene-ref">S12</div>
+      <div class="frame-vo">"Holding on to what makes LACE different. Focusing on what drives us forward."</div>
+      <div class="frame-direction">New archive x2 — Dan to supply. No on-screen text.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:1fr 1fr;">
+      <div class="clip tbc">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span>TBC — Dan to supply</span>
+          </div>
+          <div class="thumb-badge tbc-b">TBC</div>
+        </div>
+        <div class="clip-info">
+          <div class="clip-num tbc-n">New Archive A</div>
+          <div class="clip-desc">Holding on to what makes LACE different</div>
+          <div class="clip-meta">Dan to supply.</div>
+        </div>
+      </div>
+      <div class="clip tbc">
+        <div class="thumb">
+          <div class="thumb-placeholder">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            <span>TBC — Dan to supply</span>
+          </div>
+          <div class="thumb-badge tbc-b">TBC</div>
+        </div>
+        <div class="clip-info">
+          <div class="clip-num tbc-n">New Archive B</div>
+          <div class="clip-desc">Focusing on what drives us forward</div>
+          <div class="clip-meta">Dan to supply.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- F23 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F23</div>
+      <div class="scene-ref">S12</div>
+      <div class="frame-vo">"Building towards LACE 2.0 together."</div>
+      <div class="frame-screen-text">Build towards LACE 2.0 together.</div>
+      <div class="frame-direction">Clip 20.</div>
+    </div>
+    <div class="frame-row" style="grid-template-columns:1fr;">
       <div class="clip archive">
         <div class="thumb"><img src="clip 20.jpg" alt="20"><div class="thumb-badge arc">20</div></div>
         <div class="clip-info">
           <div class="clip-num">Clip 20</div>
-          <div class="clip-desc">Archive footage</div>
-          <div class="clip-meta">Client-held.</div>
-        </div>
-      </div>
-      <div class="clip archive">
-        <div class="thumb"><img src="scene 12 01.jpg" alt="S12-01"><div class="thumb-badge arc">A</div></div>
-        <div class="clip-info">
-          <div class="clip-num">S12 Archive A</div>
-          <div class="clip-desc">Archive — people</div>
-          <div class="clip-meta">Client-held.</div>
-        </div>
-      </div>
-      <div class="clip archive">
-        <div class="thumb"><img src="scene 12 02.jpg" alt="S12-02"><div class="thumb-badge arc">B</div></div>
-        <div class="clip-info">
-          <div class="clip-num">S12 Archive B</div>
-          <div class="clip-desc">Archive — people</div>
-          <div class="clip-meta">Client-held.</div>
+          <div class="clip-desc">Building towards LACE 2.0</div>
+          <div class="clip-meta">Archive. Client-held.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- S13 -->
-  <div class="scene-block">
-    <div class="scene-heading">
-      <div class="scene-num-badge">S13</div>
-      <div class="scene-title">Stronger. Smarter. Better.</div>
-      <div class="scene-vo">"Stronger. Smarter. Better."</div>
-      <div class="scene-screen-text">Stronger. Smarter. Better.</div>
+  <!-- F24 -->
+  <div class="frame-block">
+    <div class="frame-heading">
+      <div class="frame-badge">F24</div>
+      <div class="scene-ref">S13</div>
+      <div class="frame-vo">"Stronger. Sharper. Better."</div>
+      <div class="frame-screen-text">Stronger. Sharper. Better.</div>
+      <div class="frame-direction">Text only. End card — HyperFrames.</div>
     </div>
-    <div class="scene-row" style="grid-template-columns: 2fr;">
+    <div class="frame-row" style="grid-template-columns:2fr 1fr;">
       <div class="sf-card">
         <div class="sf-thumb"><iframe src="LACE_2.0_StyleFrames.html" data-scene="13" scrolling="no"></iframe></div>
         <div class="sf-label"><div class="sf-tag">Style Frame</div><div class="sf-name">S13 — End card</div></div>
+      </div>
+      <div class="hf-card">
+        <div class="sf-thumb"><iframe src="hyperframes/f24_end_card.html" scrolling="no"></iframe></div>
+        <div class="hf-label"><div class="hf-tag">HyperFrames</div><div class="hf-name">Stronger. Sharper. Better.</div></div>
       </div>
     </div>
   </div>
@@ -717,7 +796,6 @@
 </div>
 
 <script>
-  // Scale iframes to fill their 16:9 thumb containers
   function scaleFrames() {
     document.querySelectorAll('.sf-thumb').forEach(container => {
       const iframe = container.querySelector('iframe');
@@ -728,22 +806,14 @@
       container.style.height = (720 * scale) + 'px';
     });
   }
-
-  // Scroll each iframe to the correct scene after load
   document.querySelectorAll('.sf-thumb iframe').forEach(iframe => {
     iframe.addEventListener('load', () => {
       const scene = parseInt(iframe.dataset.scene);
-      try {
-        // Each scene is 100vh; StyleFrames renders at 720px iframe height
-        const scrollY = (scene - 1) * 720;
-        iframe.contentWindow.scrollTo(0, scrollY);
-      } catch(e) {}
+      try { iframe.contentWindow.scrollTo(0, (scene - 1) * 720); } catch(e) {}
     });
   });
-
   scaleFrames();
   window.addEventListener('resize', scaleFrames);
 </script>
-
 </body>
 </html>
